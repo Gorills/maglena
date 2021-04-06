@@ -1,0 +1,56 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+{% block description %} {% endblock %}
+{% block keywords %} {% endblock %}
+{% block canonical %} {% endblock %}
+{% block og:title %} {% endblock %}
+{% block og:description %}  {% endblock %}
+{% block og:url %} {% endblock %}
+{% block twitter:title %}{% endblock %}
+{% block twitter:description %} {% endblock %}
+{% block og:site_name %} {% endblock %}
+
+{% block body %}
+{% load static %}
+
+
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope
+          itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span></a>
+        <meta itemprop="position" content="1" />
+      </li>
+      
+      <li itemprop="itemListElement" itemscope
+          itemtype="https://schema.org/ListItem">
+        <a itemscope itemtype="https://schema.org/WebPage"
+           itemprop="item" itemid="https://example.com/books/sciencefiction"
+           href="{% url 'turn' %}">
+          <span itemprop="name">Услуги</span></a>
+        <meta itemprop="position" content="2" />
+      </li>
+      <li itemprop="itemListElement" itemscope
+          itemtype="https://schema.org/ListItem">
+        <a itemscope itemtype="https://schema.org/WebPage"
+           itemprop="item" itemid="https://example.com/books/sciencefiction"
+           href="{{ servise.parent.get_absolute_url }}">
+          <span itemprop="name">{{ servise.parent.title }}</span></a>
+        <meta itemprop="position" content="3" />
+      </li>
+      
+      <li itemprop="itemListElement" itemscope
+          itemtype="https://schema.org/ListItem">
+        <span itemprop="name">{{ servise.title }}</span>
+        <meta itemprop="position" content="4" />
+      </li>
+    </ol>
+
+
+
+{{ servise.title }}
+{{ servise.text | safe }}
+
+{% endblock %}

@@ -1,0 +1,155 @@
+{% load static %}
+{% load sorl_thumbnail %}
+{% load djsingleton %}
+{% get_singleton 'myapp' 'Config' as setup %}
+{% get_singleton 'myapp' 'Meta' as meta %}
+{% get_singleton 'myapp' 'Vacancy' as vac %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/0af96d350a.js" crossorigin="anonymous"></script>
+
+    <title> {% block title %}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}" />
+    <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+    <link rel="canonical" href="{% block canonical %}{% endblock %}" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="website" />
+
+    <meta property="og:title" content="{% block og:title %}{% endblock %}" />
+    <meta property="og:description" content="{% block og:description %}{% endblock %}" />
+    <meta property="og:url" content="{% block og:url %}{% endblock %}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{% block twitter:title %}{% endblock %}" />
+    <meta name="twitter:description" content="{% block twitter:description %}{% endblock %}" />
+    <meta name="theme-color" content="#2b2a28">
+    <meta property="og:site_name" content="{% block og:site_name %}{% endblock %}" />
+
+    <meta property="vk:image" content="{% static 'images/social/vk.png' %}" />
+    <meta property="og:image" content="{% static 'images/social/vk.png' %}" />
+    <meta property="og:image" content="{% static 'images/social/vk.png' %}" />
+    <link rel="shortcut icon" href="{% static 'images/fav/favicon.ico' %}" type="image/x-icon" />
+    <link rel="icon" type="image/png" href="{% static 'images/fav/favicon-32x32.png' %}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{% static 'images/fav/apple-touch-icon.png' %}" />
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'images/fav/apple-touch-icon-57x57.png' %}" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'images/fav/apple-touch-icon-72x72.png' %}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/fav/apple-touch-icon-76x76.png' %}" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'images/fav/apple-touch-icon-114x114.png' %}" />
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'images/fav/apple-touch-icon-120x120.png' %}" />
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'images/fav/apple-touch-icon-144x144.png' %}" />
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/fav/apple-touch-icon-152x152.png' %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/fav/apple-touch-icon-180x180.png' %}" />
+
+
+    <link href="{% static 'css/style.css' %}?{% now "H:i:s" %}" rel="stylesheet">
+   
+</head>
+
+<body>
+
+
+<!-- Если на главной странице, то лого без ссылки !-->
+<!-- размер лого "301x130" надо выставить 100% как в CSS, пиксель в пиксель !-->
+
+
+        {% if request.get_full_path == '/' %}
+            {% thumbnail setup.logo "301x130" crop="center" format="PNG" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"alt="{{ setup.name }}">
+            {% endthumbnail %}
+        {% else %}
+
+            {% thumbnail setup.logo "301x130" crop="center" format="PNG" as im %}
+                <a href="{% url 'index' %}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"alt="{{ setup.name }}"></a>
+            {% endthumbnail %}
+        {% endif %}
+   
+    
+
+
+
+<nav itemscope itemtype="http://schema.org/SiteNavigationElement">
+
+    <ul itemprop="about" itemscope itemtype="http://schema.org/ItemList">
+
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+            <a itemprop="url" href="{% url 'index' %}">Главная</a>
+            <meta itemprop="name" content="Главная" />
+        </li>
+
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+            <a itemprop="url" href="{% url 'about' %}">О нас</a>
+            <meta itemprop="name" content="О нас" />
+
+            <ul itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                    <a itemprop="url" href="{% url 'tour' %}">Виртуальный тур</a>
+                    <meta itemprop="name" content="Виртуальный тур" />
+                </li>
+                 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                    <a itemprop="url" href="{% url 'vacancy' %}">Вакансии</a>
+                    <meta itemprop="name" content="Вакансии" />
+                </li>
+            </ul>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+            <a itemprop="url" href="{% url 'turn' %}">Услуги</a>
+            <meta itemprop="name" content="Услуги" />
+
+            <ul itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                
+                {% for turn in request.turn_list %}
+                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                        <a itemprop="url" href="{{ turn.get_absolute_url }}">{{ turn.title }}</a>
+                        <meta itemprop="name" content="{{ turn.title }}" />
+                    </li>
+                {% endfor %}
+               
+            </ul>
+        </li>
+
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+            <a itemprop="url" href="{% url 'contacts' %}">Контакты</a>
+            <meta itemprop="name" content="Контакты" />
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- Перебор этих массивов доступен на всех страницах сайта !-->
+
+<!-- адреса !-->
+
+    {% for adres in setup.adres.all %}
+        {{ adres.name }} 
+    {% endfor %}
+<!-- телефоны !-->
+    {% for phone in setup.phone.all %}
+        {{ phone.name }}
+    {% endfor %}
+<!-- соцсети !-->
+    {% for social in setup.social.all %}
+        {{ social.icon }}
+    {% endfor %}
+
+
+
+
+    {% block body %}
+    {% endblock %}
+
+
+<!-- Footer !-->
+<p>© Copyright 2012 - {% now "Y" %}</p>
+
+    <script src="{% static 'js/script.js' %}?{% now "H:i:s" %}"><script>
+
+</body>
+
+</html>

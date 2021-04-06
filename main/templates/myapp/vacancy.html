@@ -1,0 +1,46 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {{ setup.meta_title }} {% endblock %}
+{% block description %} {{ setup.meta_description }} {% endblock %}
+{% block keywords %} {{ setup.meta_keywords}} {% endblock %}
+{% block canonical %} {{ setup.domen }} {% endblock %}
+{% block og:title %} {{ setup.meta_title }} {% endblock %}
+{% block og:description %} {{ setup.meta_description }} {% endblock %}
+{% block og:url %} {{ setup.domen }} {% endblock %}
+{% block twitter:title %} {{ setup.meta_title }}{% endblock %}
+{% block twitter:description %} {{ setup.meta_description }}{% endblock %}
+{% block og:site_name %} {{ setup.domen }}{% endblock %}
+
+{% block body %}
+{% load static %}
+
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope
+          itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span></a>
+        <meta itemprop="position" content="1" />
+      </li>
+      <li itemprop="itemListElement" itemscope
+          itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="{% url 'about' %}">
+            <span itemprop="name">О нас</span></a>
+        <meta itemprop="position" content="2" />
+      </li>
+      
+      <li itemprop="itemListElement" itemscope
+          itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Вакансии</span>
+        <meta itemprop="position" content="3" />
+      </li>
+      
+     
+    </ol>
+
+{{ vac.text | safe }}
+
+
+
+
+{% endblock %}

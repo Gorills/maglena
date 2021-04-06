@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+{% block description %} {% endblock %}
+{% block keywords %} {% endblock %}
+{% block canonical %} {% endblock %}
+{% block og:title %} {% endblock %}
+{% block og:description %}  {% endblock %}
+{% block og:url %} {% endblock %}
+{% block twitter:title %}{% endblock %}
+{% block twitter:description %} {% endblock %}
+{% block og:site_name %} {% endblock %}
+
+{% block body %}
+{% load static %}
+
+<ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope
+          itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span></a>
+        <meta itemprop="position" content="1" />
+      </li>
+      
+   <li itemprop="itemListElement" itemscope
+          itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Услуги</span>
+        <meta itemprop="position" content="2" />
+      </li>
+      
+     
+    </ol>
+
+
+{% for t in turn %}
+    <a href="{{ t.get_absolute_url }}">{{ t.title }}</a>
+{% endfor %}
+
+{% endblock %}

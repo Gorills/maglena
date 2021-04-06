@@ -1,0 +1,62 @@
+
+{% extends 'base.html' %}
+
+{% block title %}{{ turn.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
+{% block description %}{{ turn.meta_description }}{% endblock %}
+{% block keywords %}{{ turn.meta_keywords }}{% endblock %}
+{% block canonical %}{{ request.META.HTTP_HOST }}{{ turn.get_absolute_url }}{% endblock %}
+{% block og:title %}{{ turn.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
+{% block og:description %}{{ turn.meta_description }}{% endblock %}
+{% block og:url %}{{ turn.get_absolute_url }}{% endblock %}
+{% block twitter:title %}{{ turn.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
+{% block twitter:description %}{{ turn.meta_description }}{% endblock %}
+{% block og:site_name %}{{ request.META.HTTP_HOST }}{{ turn.get_absolute_url }}{% endblock %}
+
+{% block body %}
+{% load static %}
+
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope
+          itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span></a>
+        <meta itemprop="position" content="1" />
+      </li>
+      
+      <li itemprop="itemListElement" itemscope
+          itemtype="https://schema.org/ListItem">
+        <a itemscope itemtype="https://schema.org/WebPage"
+           itemprop="item" itemid="https://example.com/books/sciencefiction"
+           href="{% url 'turn' %}">
+          <span itemprop="name">Услуги</span></a>
+        <meta itemprop="position" content="2" />
+      </li>
+      
+      <li itemprop="itemListElement" itemscope
+          itemtype="https://schema.org/ListItem">
+        <span itemprop="name">{{ turn.title }}</span>
+        <meta itemprop="position" content="3" />
+      </li>
+    </ol>
+
+
+
+{{ turn.title }}
+
+
+
+
+
+{% for servise in turn.servise.all %}
+    <a href="{{servise.get_absolute_url}}">{{servise.title}}</a><br>
+    
+{% endfor %}
+
+
+{% for price in turn.price.all %}
+    {{price.title}} <br>
+    {{price.text | safe }}
+{% endfor %}
+
+
+{% endblock %}
