@@ -1,4 +1,5 @@
 {% load static %}
+{% load recaptcha3 %}
 {% load sorl_thumbnail %}
 {% load djsingleton %}
 {% get_singleton 'myapp' 'Config' as setup %}
@@ -47,6 +48,8 @@
 
 
     <link href="{% static 'css/style.css' %}?{% now "H:i:s" %}" rel="stylesheet">
+    {% recaptcha_init %}
+    {% recaptcha_ready action_name='homepage' %}
    
 </head>
 

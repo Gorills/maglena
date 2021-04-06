@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'webmaster_verification',
-     
+    'snowpenguin.django.recaptcha3',
     'myapp',
     'turn',
 ]
@@ -151,9 +151,14 @@ WEBMASTER_VERIFICATION = {
    
 }
 
+
+RECAPTCHA_PRIVATE_KEY = '6LeJpJ4aAAAAAD-pOGTLB2PAWYRie2SRrb3SOxk3'
+RECAPTCHA_PUBLIC_KEY = '6LeJpJ4aAAAAAC0DLgwIxk-jXhSqHjnxB4l_2hnx'
+RECAPTCHA_DEFAULT_ACTION = 'generic'
+RECAPTCHA_SCORE_THRESHOLD = 0.5
+RECAPTCHA_LANGUAGE = 'ru' 
+
 CKEDITOR_UPLOAD_PATH = "ckeditor/"
-
-
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
