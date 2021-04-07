@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'django_cleanup',
     'django.contrib.sitemaps',
     'sorl.thumbnail',
@@ -49,6 +48,8 @@ INSTALLED_APPS = [
     'snowpenguin.django.recaptcha3',
     'myapp',
     'turn',
+    'clients',
+
 ]
 
 MIDDLEWARE = [
@@ -152,11 +153,21 @@ WEBMASTER_VERIFICATION = {
 }
 
 
-RECAPTCHA_PRIVATE_KEY = '6LeJpJ4aAAAAAD-pOGTLB2PAWYRie2SRrb3SOxk3'
-RECAPTCHA_PUBLIC_KEY = '6LeJpJ4aAAAAAC0DLgwIxk-jXhSqHjnxB4l_2hnx'
+RECAPTCHA_PRIVATE_KEY = '6LfY0p4aAAAAAKqivjosRv9IgujOpq_Ex6lvOP8C'
+RECAPTCHA_PUBLIC_KEY = '6LfY0p4aAAAAAPItA8HRCQTba88lxHP-BW4gOv3_'
 RECAPTCHA_DEFAULT_ACTION = 'generic'
 RECAPTCHA_SCORE_THRESHOLD = 0.5
-RECAPTCHA_LANGUAGE = 'ru' 
+
+
+EMAIL_HOST = 'smtp.fullspace.ru ' 
+EMAIL_HOST_USER = 'info@maglena70.ru' 
+EMAIL_HOST_PASSWORD = 'Ie51587v' 
+EMAIL_PORT = 465 
+EMAIL_USE_SSL = True
+
+FROM_EMAIL = 'info@maglena70.ru' 
+EMAIL_ADMIN = 'info@maglena70.ru'
+
 
 CKEDITOR_UPLOAD_PATH = "ckeditor/"
 CKEDITOR_CONFIGS = {
