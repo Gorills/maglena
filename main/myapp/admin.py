@@ -24,6 +24,7 @@ class AdressAdmin(admin.TabularInline):
 class ConfigAdmin(SingletonAdmin):
     list_display = ('name', 'email', 'time', 'logo', 'map')
     fields = ('name', 'email', 'time', 'logo', 'map')
+    save_on_top = True
 
     inlines = [
         PhonesAdmin,
@@ -37,6 +38,8 @@ admin.site.register(Config, ConfigAdmin)
 
 class MetaAdmin(SingletonAdmin):
     list_display = ('meta_title', 'meta_description', 'meta_subtitle', 'meta_keywords', 'domen')
+    save_on_top = True
+
 
 admin.site.register(Meta, MetaAdmin)
 
