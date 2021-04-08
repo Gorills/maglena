@@ -44,11 +44,12 @@
 
 <form method="post">
 {% csrf_token %}
+
 {{ form.name }}
 {{ form.email }}
 {{ form.text }}
-{# {{ form.captcha }} #}
-
+{{ form.captcha }}
+{{ error }}
 <button type="submit">Отправить</button>
 </form>
 

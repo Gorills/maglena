@@ -25,7 +25,7 @@ class Turn(models.Model):
 class Price(models.Model):
     title = models.CharField(max_length=150, verbose_name='Наименование')
     text = models.TextField(verbose_name='Прайс')
-    parent = models.ForeignKey(Turn, on_delete=models.CASCADE, related_name='price')
+    parent = models.ForeignKey(Turn, on_delete=models.CASCADE, related_name='price', verbose_name='Категория')
 
     class Meta:
         verbose_name = 'Прайс'
@@ -36,7 +36,7 @@ class Servise(models.Model):
     title = models.CharField(max_length=250, verbose_name='Название')
     image = models.ImageField(upload_to='services')
     text = models.TextField(verbose_name='Описание')
-    parent = models.ForeignKey(Turn, on_delete=models.CASCADE, related_name='servise')
+    parent = models.ForeignKey(Turn, on_delete=models.CASCADE, related_name='servise', verbose_name='Категория')
     meta_title = models.CharField(max_length=200, verbose_name='Мета заголовок')
     meta_description = models.CharField(max_length=300, verbose_name='Мета описание')
     meta_keywords = models.CharField(max_length=200, verbose_name='Ключевые слова')
@@ -58,3 +58,15 @@ class Servise(models.Model):
         verbose_name = 'Доп.услуга'
         verbose_name_plural = 'Доп.услуги'
         
+
+class Slider(models.Model):
+    title = models.CharField(max_length=150, verbose_name='Название')
+    image = models.ImageField(upload_to='slider', verbose_name='Изображение')
+    parent = models.ForeignKey(Turn, on_delete=models.CASCADE, verbose_name='Категория')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Слайд'
+        verbose_name_plural = 'Слайды'
