@@ -33,7 +33,10 @@
     </ol>
 
 
-{% for t in turn %}
+
+
+
+{% for t in turns %}
     <a href="{{ t.get_absolute_url }}">{{ t.title }}</a>
 {% endfor %}
 

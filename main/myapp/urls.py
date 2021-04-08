@@ -20,4 +20,5 @@ urlpatterns = [
     path('contacts/', views.contacts, name='contacts'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
     path("robots.txt", views.robots_txt),
+    
 ]

@@ -1,12 +1,14 @@
 from django.shortcuts import render
-from .models import Turn, Servise
+from .models import Turn, Servise, Slider
 from django.views.generic import ListView, DetailView
 
 # Create your views here.
 def turn(request):
     turn = Turn.objects.all()
+    
     context = {
-        'turn': turn,
+        'turns': turn,
+        
     }
     return render(request, "turn/index.html", context)
 

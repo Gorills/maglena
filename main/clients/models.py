@@ -21,6 +21,7 @@ class Contact(models.Model):
     tel = models.CharField(max_length=12, verbose_name='Телефон')
     messages = models.TextField(verbose_name='Сообщение')
     date = models.DateTimeField(auto_now_add=True)
+    parent = models.ForeignKey('Status', on_delete=models.PROTECT, related_name='status', verbose_name='Статус', null=True, blank=True)
     def __str__(self):
         return self.name
 
@@ -30,7 +31,10 @@ class Contact(models.Model):
 
 class Status(models.Model):
     title = models.CharField(max_length=100, verbose_name='Статус')
-    parent = models.ForeignKey(Contact, on_delete=models.PROTECT, related_name='status')
-
+    
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Статус'
+        verbose_name_plural = 'Статусы'

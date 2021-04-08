@@ -9,19 +9,16 @@ class RewiewAdmin(admin.ModelAdmin):
 admin.site.register(Rewiew, RewiewAdmin)
 
 
-class StatusAdmin(admin.TabularInline):
-    list_display = ('title')
-    model = Status
-    extra = 0
-    min_num = 1
+
 
 class ContactAdmin(admin.ModelAdmin):
     
-    list_display = ('name', 'tel', 'date')
-    inlines = [
-        
-        StatusAdmin,
-      
-    ]
+    list_display = ('name', 'tel', 'date', 'parent')
+    list_editable = ('parent', )
+    readonly_fields = ('name', 'tel', 'date', 'messages')
+   
 
 admin.site.register(Contact, ContactAdmin)
+
+
+admin.site.register(Status)

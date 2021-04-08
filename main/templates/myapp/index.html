@@ -17,6 +17,9 @@
 
 
 
-
+{% for slide in slides %}
+  <img src="{{ slide.image.url }}" alt="{{ slide.title }}">
+  <a href="{{ slide.parent.get_absolute_url }}">Подробнее</a>
+{% endfor %}
 
 {% endblock %}

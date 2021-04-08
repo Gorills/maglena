@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.http import require_GET
+from turn.models import Slider
 # Create your views here.
 
 @require_GET
@@ -13,7 +14,9 @@ def robots_txt(request):
     return HttpResponse("\n".join(lines), content_type="text/plain")
 
 def index(request):
+    slide = Slider.objects.all()
     context = {
+        'slides': slide
     }
     return render(request, "myapp/index.html", context)
 
