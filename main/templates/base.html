@@ -11,7 +11,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/0af96d350a.js" crossorigin="anonymous"></script>
 
@@ -45,101 +46,147 @@
     <link rel="apple-touch-icon" sizes="144x144" href="{% static 'images/fav/apple-touch-icon-144x144.png' %}" />
     <link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/fav/apple-touch-icon-152x152.png' %}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/fav/apple-touch-icon-180x180.png' %}" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
-
-    <link href="{% static 'css/style.css' %}?{% now "H:i:s" %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}?{% now " H:i:s" %}" rel="stylesheet">
     {% recaptcha_init %}
     {% recaptcha_ready action_name='homepage' %}
-   
+
 </head>
 
 <body>
 
 
-<!-- Если на главной странице, то лого без ссылки !-->
-<!-- размер лого "301x130" надо выставить 100% как в CSS, пиксель в пиксель !-->
-
-
-        {% if request.get_full_path == '/' %}
-            {% thumbnail setup.logo "301x130" crop="center" format="PNG" as im %}
-                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"alt="{{ setup.name }}">
-            {% endthumbnail %}
-        {% else %}
-
-            {% thumbnail setup.logo "301x130" crop="center" format="PNG" as im %}
-                <a href="{% url 'index' %}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"alt="{{ setup.name }}"></a>
-            {% endthumbnail %}
-        {% endif %}
-   
-    
 
 
 
-<nav itemscope itemtype="http://schema.org/SiteNavigationElement">
 
-    <ul itemprop="about" itemscope itemtype="http://schema.org/ItemList">
-
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
-            <a itemprop="url" href="{% url 'index' %}">Главная</a>
-            <meta itemprop="name" content="Главная" />
-        </li>
-
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
-            <a itemprop="url" href="{% url 'about' %}">О нас</a>
-            <meta itemprop="name" content="О нас" />
-
-            <ul itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
-                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
-                    <a itemprop="url" href="{% url 'tour' %}">Виртуальный тур</a>
-                    <meta itemprop="name" content="Виртуальный тур" />
-                </li>
-                 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
-                    <a itemprop="url" href="{% url 'vacancy' %}">Вакансии</a>
-                    <meta itemprop="name" content="Вакансии" />
-                </li>
-            </ul>
-        </li>
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
-            <a itemprop="url" href="{% url 'turn' %}">Услуги</a>
-            <meta itemprop="name" content="Услуги" />
-
-            <ul itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
-                
-                {% for turn in request.turn_list %}
-                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
-                        <a itemprop="url" href="{{ turn.get_absolute_url }}">{{ turn.title }}</a>
-                        <meta itemprop="name" content="{{ turn.title }}" />
-                    </li>
+    <section class="header">
+        <div class="container">
+            <div class="header__top">
+                {% for phone in setup.phone.all %}
+                <a href="{{ phone.name }}" class="header__top-work">{{ phone.name }} </a>
                 {% endfor %}
-               
-            </ul>
-        </li>
 
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
-            <a itemprop="url" href="{% url 'contacts' %}">Контакты</a>
-            <meta itemprop="name" content="Контакты" />
-        </li>
+                <a href="" class="header__top-btn"> Оставить заявку</a>
+                <div class="header__top-wrap">
+                    {% for social in setup.social.all %}
+                    <a href="{{ social.link }}" class="header__top-social">{{ social.icon | safe }}</a>
+                    {% endfor %}
+                </div>
 
-    </ul>
+            </div>
+        </div>
+        <div class="header__nav">
 
-</nav>
+
+            <div class="container nav">
 
 
-<!-- Перебор этих массивов доступен на всех страницах сайта !-->
+                <div class="header__logo">
+                    <!-- Если на главной странице, то лого без ссылки !-->
+                    <!-- размер лого "301x130" надо выставить 100% как в CSS, пиксель в пиксель !-->
 
-<!-- адреса !-->
+
+                    {% if request.get_full_path == '/' %}
+                    {% thumbnail setup.logo "301x130" crop="center" format="PNG" as im %}
+                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ setup.name }}">
+                    {% endthumbnail %}
+                    {% else %}
+
+                    {% thumbnail setup.logo "301x130" crop="center" format="PNG" as im %}
+                    <a href="{% url 'index' %}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"
+                            alt="{{ setup.name }}"></a>
+                    {% endthumbnail %}
+                    {% endif %}
+                </div>
+                <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
+                    <div class="burger"> <span class="burger__span"></span></div>
+
+                    <ul class="header__menu " itemprop="about" itemscope itemtype="http://schema.org/ItemList">
+
+                        <li class="header__link" itemprop="itemListElement" itemscope
+                            itemtype="http://schema.org/ItemList">
+                            <a class='header__item' itemprop="url" href="{% url 'index' %}">Главная</a>
+                            <meta itemprop="name" content="Главная" />
+                        </li>
+                        <li class="header__link" itemprop="itemListElement" itemscope
+                            itemtype="http://schema.org/ItemList">
+                            <a class='header__item' itemprop="url" href="{% url 'about' %}">О нас</a>
+                            <meta itemprop="name" content="О нас" />
+
+                            <ul class="header__services" itemprop="itemListElement" itemscope
+                                itemtype="http://schema.org/ItemList">
+                                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                    <a itemprop="url" href="{% url 'tour' %}">Виртуальный тур</a>
+                                    <meta itemprop="name" content="Виртуальный тур" />
+                                </li>
+                                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                    <a itemprop="url" href="{% url 'vacancy' %}">Вакансии</a>
+                                    <meta itemprop="name" content="Вакансии" />
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="header__link" itemprop="itemListElement" itemscope
+                            itemtype="http://schema.org/ItemList">
+                            <a class='header__item' itemprop="url" href="{% url 'turn' %}">Услуги</a>
+                            <meta itemprop="name" content="Услуги" />
+
+                            <ul class="header__services" itemprop="itemListElement" itemscope
+                                itemtype="http://schema.org/ItemList">
+
+                                {% for turn in request.turn_list %}
+                                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                    <a  class='header__linked' itemprop="url" href="{{ turn.get_absolute_url }}">{{ turn.title }}</a>
+                                    <meta itemprop="name" content="{{ turn.title }}" />
+                                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                    <a itemprop="url" href="{% url 'tour' %}">Виртуальный тур dfghdkjfg dfg dfhfhdgh dfghsd</a>
+                                    <meta itemprop="name" content="Виртуальный тур" />
+                                </li>
+                                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                    <a itemprop="url" href="{% url 'vacancy' %}">Вакансии</a>
+                                    <meta itemprop="name" content="Вакансии" />
+                                </li>
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+                    </li>
+                    <li class="header__link" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                        <a class='header__item' itemprop="url" href="{% url 'contacts' %}">Контакты</a>
+                        <meta itemprop="name" content="Контакты" />
+                    </li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Перебор этих массивов доступен на всех страницах сайта !-->
+
+    <!-- адреса !-->
 
     {% for adres in setup.adres.all %}
-        {{ adres.name }} 
+    {{ adres.name }}
     {% endfor %}
-<!-- телефоны !-->
-    {% for phone in setup.phone.all %}
+    <!-- телефоны !-->
+    <!-- {% for phone in setup.phone.all %}
         {{ phone.name }}
-    {% endfor %}
-<!-- соцсети !-->
-    {% for social in setup.social.all %}
-        {{ social.icon }}
-    {% endfor %}
+    {% endfor %} -->
+    <!-- соцсети !-->
+    <!-- {% for social in setup.social.all %}
+        {{ social.icon | safe }}
+    {% endfor %} -->
 
 
 
@@ -148,10 +195,10 @@
     {% endblock %}
 
 
-<!-- Footer !-->
-<p>© Copyright 2012 - {% now "Y" %}</p>
+    <!-- Footer !-->
+    <p>© Copyright 2012 - {% now "Y" %}</p>
 
-    <script src="{% static 'js/script.js' %}?{% now "H:i:s" %}"><script>
+    <script src="{% static 'js/script.js' %}?{% now 'H:i:s' %}"></script>
 
 </body>
 
