@@ -15,48 +15,115 @@
 {% block body %}
 {% load static %}
 
-    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
-      <li itemprop="itemListElement" itemscope
-          itemtype="https://schema.org/ListItem">
-        <a itemprop="item" href="{% url 'index' %}">
-            <span itemprop="name">Главная</span></a>
-        <meta itemprop="position" content="1" />
-      </li>
+  
+
+
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="breadcrumbs__inner">
+     
+        <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+
+        
+          
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+              itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" itemscope itemtype="https://schema.org/WebPage"
+              itemprop="item" itemid="https://example.com/books/sciencefiction"
+              href="{% url 'turn' %}">
+              <span itemprop="name">Услуги</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+          
+          <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope
+              itemtype="https://schema.org/ListItem">
+            <span itemprop="name">{{ turn.title }}</span>
+            <meta itemprop="position" content="3" />
+          </li>
+
+        </ol>
+    </div>
+  </div>
+  
+</div>
+
+<div class="standart">
+  <div class="container">
+    <div class="standart__inner">
+      {{ turn.title }}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% if turn.servise.count > 0 %}
+<div class="standart">
+  <div class="container">
+    <div class="standart__inner">
+
+       
+        <div class="list-wrap">
+
+      {% for servise in turn.servise.all %}
+        <a href="{{ servise.get_absolute_url }}" class="list-wrap__item">
+          <img src="{{ servise.image.url }}" alt="" class="list-wrap__img">
+          <div class="list-wrap__text">
+            <h3 class="list-wrap__title">{{ servise.title }}</h3>
+            <p class="list-wrap__description">{{ servise.description }}</p>
+            <p class="list-wrap__btn">Подробнее</p>
+          </div>
+        </a>
+      {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+
+
+{% if turn.price.count > 0 %}
+<div class="standart">
+  <div class="container">
+    <div class="standart__inner">
+
+
+      <div class="tabs">
+      {% for price in turn.price.all %}
+        <input type="radio" name="tab-btn" id="tab-btn-{{ price.pk }}" value="" {% cycle 'checked' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' %}>
+        <label for="{{ price.pk }}">{{price.title}}</label>
+        
+      {% endfor %}
+      {% for price in turn.price.all %}
+        <div id="content-{{ price.pk }}">
+          {{price.text | safe }}
+        </div>
+        
+      {% endfor %}
+
+      </div>
       
-      <li itemprop="itemListElement" itemscope
-          itemtype="https://schema.org/ListItem">
-        <a itemscope itemtype="https://schema.org/WebPage"
-           itemprop="item" itemid="https://example.com/books/sciencefiction"
-           href="{% url 'turn' %}">
-          <span itemprop="name">Услуги</span></a>
-        <meta itemprop="position" content="2" />
-      </li>
+  
+       
+    </div>
+  </div>
+</div>
+
+
       
-      <li itemprop="itemListElement" itemscope
-          itemtype="https://schema.org/ListItem">
-        <span itemprop="name">{{ turn.title }}</span>
-        <meta itemprop="position" content="3" />
-      </li>
-    </ol>
+  
 
-
-
-{{ turn.title }}
-
-
-
-
-
-{% for servise in turn.servise.all %}
-    <a href="{{servise.get_absolute_url}}">{{servise.title}}</a><br>
-    
-{% endfor %}
-
-
-{% for price in turn.price.all %}
-    {{price.title}} <br>
-    {{price.text | safe }}
-{% endfor %}
-
+{% endif %}
 
 {% endblock %}

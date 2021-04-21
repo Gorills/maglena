@@ -46,6 +46,7 @@ class ServiseAdminRegister(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     model = Servise
     form = ServiseAdminForm
+    
     # class Meta:
     #     ordering = ("parent")
 
@@ -64,6 +65,8 @@ class TurnAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug')
     prepopulated_fields = {'slug': ('title',)}
     form = TurnAdminForm
+    save_as = True
+    save_on_top = True
     inlines = [
         
         PriceAdmin,

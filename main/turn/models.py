@@ -4,6 +4,7 @@ from django.urls import reverse
 
 class Turn(models.Model):
     title = models.CharField(max_length=150, verbose_name='Название')
+    description = models.CharField(max_length=500, verbose_name='Короткое описание', null=True)
     image = models.ImageField(upload_to='turn')
     text = models.TextField(verbose_name='Описание услуги')
     meta_title = models.CharField(max_length=200, verbose_name='Мета заголовок')

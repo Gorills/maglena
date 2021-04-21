@@ -2,7 +2,7 @@ body
     margin: 0
     padding: 0
     font-family: 'Montserrat', sans-serif
-
+    font-size: 14px
 body._lock
     overflow: hidden
 
@@ -14,14 +14,87 @@ body._lock
 h1, h2, h3, h4, h5, h6, p
     margin: 0
 ul, li
-    list-style: none
+    
     text-decoration: none
-    display: list-item
+   
 a
     text-decoration: none
-
+   
 .container
     width: 100%
-    max-width: 1140px
+    max-width: 1355px
     margin: 0 auto
     padding: 0 15px
+
+
+.btn
+
+    font-family: "Montserrat", Sans-serif
+    font-size: 14px
+    font-weight: 500
+    text-transform: uppercase
+    
+    padding: 12px 39px
+    display: block
+    color: $textTitleColor
+    background-color: #ffffff
+
+
+.btn-primary
+    font-family: "Montserrat", Sans-serif
+    font-size: 14px
+    font-weight: 500
+    text-transform: uppercase
+    
+    padding: 12px 39px
+    display: inline-block
+    color: #fff
+    background-color: $mainColor
+
+
+.title
+    text-transform: uppercase
+    font-size: 32px
+    margin-bottom: 40px
+    text-align: center
+    // .title__span
+
+    &__span
+        font-weight: 500
+        color: $mainColor
+
+
+.standart
+    margin: 0 auto
+    width: 100%
+    padding: 80px 0
+    // .standart__inner
+
+    &__inner
+        margin: 0 auto
+        width: 100%
+
+
+    // .standart__btn-wrap
+
+    &__btn-wrap
+        width: 100%
+        text-align: center
+
+    &__p
+        margin-bottom: 20px
+    // .standart__wrapper
+
+    &__wrapper
+        width: 100%
+        text-align: center
+        margin-bottom: 40px
+    &__logo
+        margin: 0 auto 
+
+
+.bg-gray 
+    background-color: #efefef
+
+.grecaptcha-badge
+    display: none

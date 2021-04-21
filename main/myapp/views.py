@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.http import require_GET
-from turn.models import Slider
+from turn.models import Slider, Turn
+from .models import Worker, Awards
 # Create your views here.
 
 @require_GET
@@ -16,13 +17,15 @@ def robots_txt(request):
 def index(request):
     slide = Slider.objects.all()
     context = {
-        'slides': slide
+        'slides': slide,
+        'turns': Turn.objects.all()[:6]
     }
     return render(request, "myapp/index.html", context)
 
 def about(request):
     context = {
-        
+        'workers': Worker.objects.all(),
+        'awards': Awards.objects.all()
     }
     return render(request, "myapp/about.html", context)
 

@@ -1,187 +1,354 @@
 .header
+    width: 100%
+    position: relative
+    margin: 0 auto
+    z-index: 999
+    background-color: #fff
+    transition: $transition
+    @media screen and ( max-width: 768px )
+        position: fixed
+        top: 0
+        left: -999px
+        bottom: 0
+        width: 80%
+        background-color: $backgroundColor
+        display: flex
+        flex-direction: column
+        overflow: scroll
+        
+    &--active
+        @media screen and ( max-width: 768px )
+            left: 0
+
     &__top
-        padding: 2px 10px
+        border-style: solid
+        border-width: 0px 0px 01px 0px
+        border-color: #DDE4E6   
+        padding: 20px 0 15px
         background-color: $whiteColor
         display: flex
         justify-content: space-between
         align-items: center
-        @media screen and ( max-width: 764px )
-            background-color: $backgroundColor
-            margin: 0 -15px
-            
-    &__top-work 
-        color: $mainColor
-
-    &__top-btn
-        padding: 10px 15px
-        background-color: $mainColor
-        color: $whiteColor
-        text-transform: uppercase
-        font-weight: 4  00
         font-size: 14px
-        &:hover
-            background-color: green
-            color: #111
+        @media screen and ( max-width: 768px )
+            background-color: $backgroundColor
+            flex-direction: column
+            margin: 0 -15px
+            text-align: center
+    // .header__top-wrap
     &__top-wrap
-    &__top-social
-        padding-right: 10px
-        color: $mainColor
+        display: flex
+        flex-direction: row
+        
+        
+            
+ 
+        @media screen and ( max-width: 768px )
+            
+            order: 2
 
-    &__nav
-        background-color: $backgroundColor
-        width: 100%
-        position: relative
+    &__top-wrap + &__top-wrap
+        @media screen and ( max-width: 768px )
 
-    &__menu
+            margin-top: 20px
+    // .header__icon
+    &__icon
+        
+        border-radius: 50%
         display: flex
         align-items: center
-        transition: right 0.5 ease
-        @media screen and ( max-width: 764px )
-            flex-direction: column
-            position: absolute
-            display: none
-            top: 0
-            right: -125px
-            transition: left 1s ease
-    &__menu._active
-        display: block
-        right: 25px
-    @media screen and ( min-width: 764px )   
-        &__link
-            position: relative
-        &__link-active
-        // &__services:first-child
-        //     // display: flex
-        //     // flex-direction: column
-        //     width: 300px
-        &__services
-            display: flex
-            opacity: 0
-            overflow: hidden
-            pointer-events: none
-            flex-wrap: wrap
-            position: absolute
-            top: 25px
-            right: -100px
-            // width: 600px
-            background-color: #fff
-            padding: 0
-            box-shadow: 0 0 8px  rgba(0,0,0,0.4)
-            transition: all 0.9s ease
-        &__services li
-            color: $textColor
-            padding: 15px 25px
-            width: 300px
-            // border: 1px solid red
-            // background-color: $backgroundColor
-            border-bottom: 1px solid $backgroundColor
-            border-right: 1px solid $backgroundColor
-            font-weight: 500
-            transition: all 0.9s ease
-        &__services > li:hover
-            background-color: $backgroundColor
-        // &__services a
-        //     border: 1px solid red
-        //     // padding: 10px 30px 10px 0
-        //     transition: all 0.7s ease
-        //     color: $textColor
-        &__services a:hover
-
-            color: $mainColor
-
-        &__item-active
-            position: relative
-            color: $mainColor
-            // transition: all 0.5s ease 
-            padding: 15px 0   
-        &__item-active:before
-            position: absolute
-            top: -21px
-            left: -6px
-            content: ''
-            width: 125%
-            height: 6px
-            color: $mainColor
-            background-color: $mainColor
-            z-index: 55
-        &__item
-            font-size: 18px
-            font-weight: bold
-            color: $textTitleColor
-            transition: all 0.5s ease 
-            padding: 15px 25px 15px 5px 
-        &__item:before
-            position: absolute
-            top: -36px
-            content: ''
-            width: 0
-            height: 0
-            left: 40%
-            margin-left: -10px        
-            background-color: $mainColor
-            transition: all 0.5s ease
-        &__item:hover
-            color: $mainColor
-        &__item:hover:before
-            top: -36px
-            left: 0
-            width: 100%
-            height: 6px
-        &__link:hover >  ul
-            opacity: 1
-            overflow: visible
-            pointer-events: all
-        
-.nav
-    display: flex
-    justify-content: space-between
-    align-items: center
-    padding: 5px 0 5px 15px
-    @media screen and ( max-width: 764px )
+        justify-content: center
+        font-size: 22px
+        color: $mainColor
+        margin-right: 20px
+    // .header__contacts-wrap
+    &__contacts-wrap
+        display: flex
         flex-direction: column
-        
-.burger
-    position: absolute
-    background-color: $mainColor
-    color: #fff
-    top: 18px
-    right: 10px   
-    z-index: 99
-    padding: 18px
-    // width: 40px
-    display: none 
-    cursor: pointer
-    @media screen and ( max-width: 764px )
-        display: block
-    &__span,
-    &::before,
-    &::after
-        position: absolute
-        width: 18px
-        height: 3px
-        right: 9px
-        background-color: #fff
-        transition: all 0.7 ease 0s
-    &::after,
-    &::before
-        content: ''
-    &::after
-        top: 10px
-    &::before
-        top: 22px
-    &__span
-        top: 16px
-.burger._active
-    right: 230px
-.burger._active span
-    display: none
-.burger._active::after
-    top: 16px
-    transform: rotate(-45deg) 
-.burger._active::before
-    top: 16px
-    transform: rotate(45deg) 
 
+    &__top-work 
+        color: $blackColor
+        transition: $transition
+        
+        
+        &:hover
+            color: $mainColor
+            text-decoration: underline
+
+    &__top-work  + &__top-work 
+        margin-top: 5px
+    
+    
+    // .header__btn
+
+    &__btn
+        text-transform: uppercase
+        font-weight: 700
+        color: #ffffff
+        background-color: $mainColor
+        transition: $transition
+        border: 1px solid $textTitleColor
+        padding: 8px 12px
+        &:hover
+            color: $mainColor
+            borde-color: $mainColor
+            background-color: #fff
+        @media screen and ( max-width: 768px )
+            margin-top: 20px
+            
+
+    &__top-adres
+        transition: $transition
+        
+        color: $blackColor
+        
+        &:hover
+            color: $mainColor
+    &__top-adres + &__top-adres
+        margin-top: 5px
+    // .header__bottom
+
+    &__bottom
+        
+        padding: 40px 0
+    // .header__bottom-wrap
+
+    &__bottom-wrap
+
+        width: 100%
+        margin: 0 auto
+        display: flex
+        justify-content: space-between
+        align-items: center
+        @media screen and ( max-width: 768px )
+            flex-direction: column
+            
+    // .header__logo
+
+    &__logo
+        width: 20%
+        @media screen and ( max-width: 768px )
+            order: 1
+            width: 100%
+            
+        a
+            display: block
+
+    // .header__logo-img
+
+    &__logo-img
+        width: 150px
+        @media screen and ( max-width: 768px )
+            width: 50%
+            margin: 20px 0
+            
+    // .header__nav
+
+    &__nav
+       
+
+    // .header__list
+
+    &__list
+        list-style: none
+        padding: 0
+        margin: 0
+        @media screen and ( max-width: 768px )
+            display: flex
+            flex-direction: column
+            text-align: center
+
+    // .header__item
+
+    &__item
+        display: inline-block
+        position: relative
+        @media screen and ( max-width: 768px )
+            display: block
+    &__item + &__item
+        margin-left: -5px
+    // .header__link
+
+    &__link
+        display: block
+        font-size: 12px
+        line-height: 1.5
+        letter-spacing: 0.2em
+        text-transform: uppercase
+        font-weight: 700
+        color: $textTitleColor
+        padding: 10px 15px
+        position: relative
+        
+        &::after
+            content: ""
+            position: absolute
+            left: 50%
+            top: -15px
+            height: 0
+            width: 0
+            transition: $transition
+            background-color: $mainColor
+            @media screen and ( max-width: 768px )
+                content: none
+        &:hover, &:focus
+            
+            color: $mainColor
+            &::after
+                left: 0
+                width: 100%
+                height: 5px
+                
+        &--active
+            color: $mainColor
+            &::after
+                left: 0
+                width: 100%
+                height: 5px
+
+    // .header__link-drop
+    &__link-drop
+        display: flex
+        align-items: center
+        @media screen and ( max-width: 768px )
+            
+            justify-content: center
+            
+        i
+            
+            margin-left: 8px
+        
+
+    // .header__dropdown
+
+    &__dropdown
+        display: none
+        list-style: none
+        position: absolute
+        left: 50%
+        transform: translateX(-50%)
+        width: fit-content
+        top: 79px
+        white-space: nowrap
+        background-color: #f7f7f7
+        padding: 20px 15px
+        column-count: 2
+        box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.1)
+        @media screen and (max-width: 768px)
+            
+            position: relative
+            column-count: 1
+            top: 0
+            background: none
+            box-shadow: none
+            width: 100%
+            padding: 0
+
+        &--active
+            display: block
+            
+    // .header__dropdown-item
+
+    &__dropdown-item
+        
+            
+            
+
+    // .header__dropdown-link
+
+    &__dropdown-link
+        padding: 15px 15px
+        display: block
+        color: $textTitleColor
+        font-weight: 500
+        text-decoration: none
+        width: 100% 
+        border-bottom: 1px solid #eee
+        transition: $transition
+        &:hover 
+            
+            color: $mainColor
+            text-decoration: underline
+        &--active
+            color: $mainColor
+            text-decoration: underline
+
+
+        @media screen and ( max-width: 768px )
+            padding: 10px
+    // .header__closer
+
+    &__closer
+        display: none
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        background-color: #3333336b
+        z-index: 998
+        position: fixed
+        &--active
+            display: block
+
+
+.toggle-menu
+    padding: 10px 5px
+    background-color: $mainColor
+    margin-left: 15px
+    display: none
+    position: fixed
+    top: 15px
+    right: 15px
+    z-index: 1000
+    @media screen and (max-width: 768px)
+        display: block
+.toggle-section
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    outline: none
+.menu-btn
+    display: flex
+    justify-content: center
+    width: 40px
+    height: 15px
+    border-radius: 50%
+    position: relative
+
+.menu-btn span,
+.menu-btn span::before,
+.menu-btn span::after
+    position: absolute
+    top: 50%
+    margin-top: -1px
+    left: 50%
+    margin-left: -15px
+    width: 30px
+    height: 2px
+    background-color: #ffffff
+
+.menu-btn span::before,
+.menu-btn span::after
+    content: ''
+    display: block
+    transition: 0.2s
+
+.menu-btn span::before
+    transform: translateY(-5px)
+
+.menu-btn span::after
+    transform: translateY(5px)
+
+
+.menu-btn_active span:before
+    transform: rotate(-45deg)
+
+.menu-btn_active span
+    height: 0
+
+
+.menu-btn_active span:after
+    transform: rotate(45deg)
 
 
     

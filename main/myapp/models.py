@@ -6,8 +6,9 @@ from djsingleton.models import SingletonModel
 class Config(SingletonModel):
     name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Название компании')
     logo = models.ImageField(upload_to='setup', verbose_name='Логотип')
-    time = models.CharField(max_length=150, verbose_name='Время работы')
+    time = models.TextField(verbose_name='Время работы')
     email = models.CharField(max_length=100, verbose_name='Почта')
+    about = models.TextField(verbose_name='О нас', null=True)
     map = models.TextField(verbose_name='Код карты', null=True, blank=True)
 
     class Meta:
@@ -35,7 +36,7 @@ class Social(models.Model):
 
 
 class Phone(models.Model):
-    phone = models.CharField(max_length=12, verbose_name='Телефон')
+    phone = models.CharField(max_length=17, verbose_name='Телефон')
     name = models.CharField(max_length=150, verbose_name='Отображаемое название', null=True)
     parent = models.ForeignKey(Config, on_delete=models.CASCADE, related_name='phone')
     class Meta:

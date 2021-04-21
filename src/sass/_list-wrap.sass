@@ -1,0 +1,68 @@
+
+.list-wrap
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    grid-gap: 20px
+    justify-content: space-between
+    margin-bottom: 40px
+    flex-wrap: wrap
+    @media screen and ( max-width: 768px )
+        grid-template-columns: repeat(2, 1fr)
+    @media screen and ( max-width: 480px )
+        grid-template-columns: 1fr
+
+    // .list-wrap__item
+
+    &__item
+        background-color: #f7f7f7
+        overflow: hidden
+        position: relative
+        height: 450px
+        display: flex
+        align-items: flex-end
+        &:hover .list-wrap__img
+            width: 120%
+
+
+    // .list-wrap__img
+
+    &__img
+        transition: $transition
+        position: absolute
+        left: 50%
+        transform: translateX(-50%)
+        top: 0
+        width: 100%
+        height: 250px
+        object-fit: cover
+        object-position: center
+    // .list-wrap__text
+
+    &__text
+        padding: 25px 40px
+    // .list-wrap__title
+
+    &__title
+        font-size: 24px
+        color: $textTitleColor
+        margin-bottom: 15px
+        &:hover
+            color: $mainColor
+ 
+    // .list-wrap__description
+
+    &__description
+        font-size: 16px
+        color: $textColor
+
+    // .list-wrap__btn
+
+    &__btn
+        font-size: 10px
+        text-transform: uppercase
+        font-weight: 300
+        margin-top: 40px
+        display: block
+        color: $textTitleColor
+        &:hover
+            color: $mainColor
