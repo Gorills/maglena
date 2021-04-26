@@ -14,24 +14,31 @@
 
 {% block body %}
 {% load static %}
-
+{% load thumbnail %}
 {% if slides.count > 1 %}
 <div class="slider">
     {% for slide in slides %}
     <div class="slider__slide">
         <div class="container">
             <div class="slider__inner">
-                <h2 class="slider__title">{{ slide.title }}</h2>
-                <p class="slider__subtitle">{{ slide.description }}</p>
 
                 <div class="slider__wrap">
+                    <h2 class="slider__title">{{ slide.title }}</h2>
+                    <p class="slider__subtitle">{{ slide.description }}</p>
+
+                
+               
                     <a href="{{ slide.parent.get_absolute_url }}" class="btn-primary">Подробнее</a>
                    
                 </div>
 
             </div>
         </div>
-        <img class="slider__img" src="{{ slide.image.url }}" alt="">
+        {% thumbnail slide.image "1881x840" crop="center" as im %}
+              <img class="slider__img" alt="{{ slide.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+            
+        {% endthumbnail %}
+        
     </div>
 
     {% endfor %}
@@ -43,7 +50,7 @@
   <div class="container">
     <div class="standart__inner">
     
-    <h2 class="title">О <span class="title__span">нас</span></h2>
+    <h1 class="title">Творческая мастерская по ремонту вашей любимой одежды!</h1>
     <p class="standart__p">Творческая мастерская по ремонту вашей любимой одежды!</p>
     <p class="standart__p">
     Хотите быть уверены в качественной, профессиональной починке любых предметов гардероба? 
@@ -82,7 +89,11 @@
 
       {% for turn in turns %}
         <a href="{{ turn.get_absolute_url }}" class="list-wrap__item">
-          <img src="{{ turn.image.url }}" alt="" class="list-wrap__img">
+        {% thumbnail turn.image "410x410" crop="center" as im %}
+              <img class="list-wrap__img" alt="{{ turn.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+               
+        {% endthumbnail %}
+         
           <div class="list-wrap__text">
             <h3 class="list-wrap__title">{{ turn.title }}</h3>
             <p class="list-wrap__description">{{ turn.description }}</p>

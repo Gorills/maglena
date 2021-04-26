@@ -3,7 +3,7 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
 
 
-from .models import Turn, Price, Servise, Slider
+from .models import Turn, Price, Servise, Slider, Work, WorkImage
 
 
 class PriceAdminForm(forms.ModelForm):
@@ -81,3 +81,19 @@ class SliderAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Slider, SliderAdmin)
+
+class WorkImageAdmin(admin.StackedInline):
+    model = WorkImage
+    extra = 0
+    min_num = 0
+
+
+class WorkAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'parent')
+    prepopulated_fields = {'slug': ('title',)}
+
+    inlines = [
+        WorkImageAdmin,
+    ]
+
+admin.site.register(Work, WorkAdmin)

@@ -54,7 +54,7 @@
         <a href="{{ turn.get_absolute_url }}" class="list-wrap__item">
           <img src="{{ turn.image.url }}" alt="" class="list-wrap__img">
           <div class="list-wrap__text">
-            <h3 class="list-wrap__title">{{ turn.title }}</h3>
+            <h3 class="list-wrap__title">{% if turn.menu_name %}{{ turn.menu_name }}{% else %}{{ turn.title }}{% endif %}</h3>
             <p class="list-wrap__description">{{ turn.description }}</p>
             <p class="list-wrap__btn">Подробнее</p>
           </div>

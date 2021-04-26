@@ -12,6 +12,7 @@ class StaticViewSitemap(Sitemap):
             'vacancy',
             'tour',
             'contacts',
+            'turn',
      
             ]
     def location(self, item):

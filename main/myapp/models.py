@@ -20,6 +20,7 @@ class Adres(models.Model):
     parent = models.ForeignKey(Config, on_delete=models.CASCADE, related_name='adres')
     name = models.CharField(max_length=150, verbose_name='Отображаемое название', null=True)
     phone = models.CharField(max_length=150, verbose_name='Телефон (если есть)', null=True, blank=True)
+    time = models.CharField(max_length=150, verbose_name='Время работы', null=True, blank=True)
     class Meta:
         verbose_name = 'Адрес'
         verbose_name_plural = 'Адреса'
@@ -48,7 +49,7 @@ class Phone(models.Model):
 class Meta(SingletonModel):
     meta_title = models.CharField(max_length=200, verbose_name='Мета заголовок')
     meta_description = models.CharField(max_length=350, verbose_name='Мета описание')
-    meta_subtitle = models.CharField(max_length=150, verbose_name='Вторая часть заголовка сайта (через | )')
+    meta_subtitle = models.CharField(max_length=150, verbose_name='Вторая часть заголовка сайта (через | )', null=True)
     meta_keywords = models.CharField(max_length=350, verbose_name='Ключевые слова')
     domen = models.CharField(max_length=350, verbose_name='Полный адрес сайта')
 
@@ -63,7 +64,7 @@ class Vacancy(SingletonModel):
         verbose_name_plural = 'Вакансии'
 
 class Worker(models.Model):
-    name = models.CharField(max_length=150, verbose_name='Фио')
+    name = models.CharField(max_length=150, verbose_name='Фио', null=True, blank=True)
     image = models.ImageField(upload_to='workers', verbose_name='Фотография')
     position = models.CharField(max_length=350, verbose_name='Должность')
 

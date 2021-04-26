@@ -4,6 +4,8 @@ from django.urls import reverse
 
 class Turn(models.Model):
     title = models.CharField(max_length=150, verbose_name='Название')
+    h1 = models.CharField(max_length=150, verbose_name='Заголовок H1', null=True, blank=True)
+    menu_name = models.CharField(max_length=150, verbose_name='Текст в меню', null=True, blank=True)
     description = models.CharField(max_length=500, verbose_name='Короткое описание', null=True)
     image = models.ImageField(upload_to='turn')
     text = models.TextField(verbose_name='Описание услуги')
@@ -35,6 +37,8 @@ class Price(models.Model):
 
 class Servise(models.Model):
     title = models.CharField(max_length=250, verbose_name='Название')
+    h1 = models.CharField(max_length=150, verbose_name='Заголовок H1', null=True, blank=True)
+
     image = models.ImageField(upload_to='services')
     text = models.TextField(verbose_name='Описание')
     parent = models.ForeignKey(Turn, on_delete=models.CASCADE, related_name='servise', verbose_name='Категория')
@@ -44,6 +48,7 @@ class Servise(models.Model):
     slug = models.SlugField(unique=True)
     def __str__(self):
         return self.title
+
     def get_absolute_url(self):
         
         return reverse(
@@ -52,13 +57,40 @@ class Servise(models.Model):
             )
        
 
-    # def get_absolute_url(self):
-    #     return reverse('servise_list', kwargs={'parent': self.parent.slug,'slug': self.slug})
-
+    
     class Meta:
         verbose_name = 'Доп.услуга'
         verbose_name_plural = 'Доп.услуги'
         
+
+class Work(models.Model):
+    title = models.CharField(max_length=250, verbose_name='Название')
+    parent = models.ForeignKey(Turn, on_delete=models.CASCADE, verbose_name='Работы', related_name='work')
+    slug = models.SlugField(unique=True)
+
+    def get_absolute_url(self):
+        
+        return reverse(
+            'work_detail',
+            kwargs={'slug': self.slug}
+            )
+
+    
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Работа'
+        verbose_name_plural = 'Работы'
+
+class WorkImage(models.Model):
+    image = models.ImageField(upload_to='works', verbose_name='Изображение')
+    parent = models.ForeignKey(Work, on_delete=models.CASCADE, verbose_name='Работа', related_name='images')
+    
+    class Meta:
+        verbose_name = 'Изображение'
+        verbose_name_plural = 'Изображения'
+
 
 class Slider(models.Model):
     title = models.CharField(max_length=150, verbose_name='Название')

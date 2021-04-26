@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Turn, Servise, Slider
+from .models import Turn, Servise, Slider, Work
 from django.views.generic import ListView, DetailView
 
 # Create your views here.
@@ -31,3 +31,18 @@ def servise_list(request, slug, parent):
         'servise': servise,
     }
     return render(request, "turn/service_list.html", context)
+
+    
+
+class WorkList(ListView):
+    model = Work
+    context_object_name = 'works'
+
+    template_name = 'turn/work_list.html'
+
+
+class WorkDetail(DetailView):
+    model = Work
+    context_object_name = 'work'
+
+    template_name = 'turn/work_detail.html'

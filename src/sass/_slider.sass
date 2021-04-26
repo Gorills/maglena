@@ -52,12 +52,18 @@
     // .slider__wrap
 
     &__wrap
+        padding: 20px 
+        background-color: #3130306b
         text-align: center
-       
+        flex-direction: column
+        align-items: center
         width: 40%
         display: flex
         justify-content: center
         margin: 20px auto 0
+        .btn-primary
+            width: 170px
+
     // .slider__img
 
     &__img
@@ -68,7 +74,7 @@
         object-fit: cover
         width: 100%
         height: 100%
-        opacity: 50%
+        opacity: 100%
         // filter: contrast(200%)
         // filter: brightness(0.2)
 
@@ -103,9 +109,11 @@
         left: 15px
         z-index: 22
         height: 50px
+        background-color: #3333334f
 
     .next
         right: 15px
         z-index: 22 
         height: 50px
         transform: rotate(180deg)
+        background-color: #3333334f

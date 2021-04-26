@@ -8,4 +8,6 @@ urlpatterns = [
     path('<slug:slug>/', views.turn_detail, name='turn_detail'),
    
     path('<slug:parent>/<slug:slug>/', views.servise_list, name='servise_list'),
+
+
 ]

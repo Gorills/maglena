@@ -53,6 +53,11 @@ if( window.innerWidth > 768 ){
       });
   } 
 
+
+
+
+
+  
 jQuery(document).ready(function($) {
     var url=document.location.href;
     $.each($(".header__link"),function(){
@@ -74,3 +79,46 @@ jQuery(document).ready(function($) {
 
 
 
+$(window).scroll(function() {
+    var height = $(window).scrollTop();
+    /*Если сделали скролл на 100px задаём новый класс для header*/
+    if(height > 125){
+        $('.header').addClass('header--fixed');
+        $('.margintop').addClass('margintop--active');
+        
+    } else{
+        /*Если меньше 100px удаляем класс для header*/
+        $('.header').removeClass('header--fixed');
+        $('.margintop').removeClass('margintop--active');
+    }
+});
+
+$('.work-grid').magnificPopup({
+    delegate: 'a',
+    // child items selector, by clicking on it popup will open
+    type: 'image',
+    gallery: {
+      enabled: true,
+      // set to true to enable gallery
+      preload: [0, 2],
+      // read about this option in next Lazy-loading section
+      navigateByImgClick: true,
+      arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
+      // markup of an arrow button
+      tPrev: 'Previous (Left arrow key)',
+      // title for left button
+      tNext: 'Next (Right arrow key)',
+      // title for right button
+      tCounter: '<span class="mfp-counter">%curr% of %total%</span>' // markup of counter
+  
+    }
+  });
+
+  $('.tabs-wrapper').each(function() {
+	let ths = $(this);
+	ths.find('.tab-item').not(':first').hide();
+	ths.find('.tab').click(function() {
+		ths.find('.tab').removeClass('active').eq($(this).index()).addClass('active');
+		ths.find('.tab-item').hide().eq($(this).index()).fadeIn()
+	}).eq(0).addClass('active');
+});

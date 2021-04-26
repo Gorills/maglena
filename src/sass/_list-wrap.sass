@@ -4,7 +4,7 @@
     grid-template-columns: repeat(3, 1fr)
     grid-gap: 20px
     justify-content: space-between
-    margin-bottom: 40px
+    
     flex-wrap: wrap
     @media screen and ( max-width: 768px )
         grid-template-columns: repeat(2, 1fr)
@@ -20,8 +20,9 @@
         height: 410px
         display: flex
         align-items: flex-end
+        color: #ffffff
         &:hover .list-wrap__img
-            width: 120%
+            height: 120%
 
 
     // .list-wrap__img
@@ -30,21 +31,30 @@
         transition: $transition
         position: absolute
         left: 50%
-        transform: translateX(-50%)
-        top: 0
+        transform: translate(-50%, -50%)
+        top: 50%
         width: 100%
-        height: 250px
+        height: 100%
         object-fit: cover
         object-position: center
     // .list-wrap__text
 
     &__text
-        padding: 25px 40px
+        z-index: 22
+        background-color: #333333ce
+        color: #ffffff
+        padding: 15px 20px
+        width: 100%
+        display: flex
+        flex-direction: column
+        justify-content: center
+        height: 200px
+        
     // .list-wrap__title
 
     &__title
         font-size: 24px
-        color: $textTitleColor
+        
         margin-bottom: 15px
         &:hover
             color: $mainColor
@@ -53,7 +63,7 @@
 
     &__description
         font-size: 16px
-        color: $textColor
+        color: #ffffff
 
     // .list-wrap__btn
 
@@ -61,8 +71,8 @@
         font-size: 10px
         text-transform: uppercase
         font-weight: 300
-        margin-top: 40px
+        margin-top: 20px
         display: block
-        color: $textTitleColor
+        color: #ffffff
         &:hover
             color: $mainColor

@@ -1,16 +1,16 @@
 
 {% extends 'base.html' %}
 
-{% block title %} {% endblock %}
-{% block description %} {% endblock %}
-{% block keywords %} {% endblock %}
-{% block canonical %} {% endblock %}
-{% block og:title %} {% endblock %}
-{% block og:description %}  {% endblock %}
-{% block og:url %} {% endblock %}
-{% block twitter:title %}{% endblock %}
-{% block twitter:description %} {% endblock %}
-{% block og:site_name %} {% endblock %}
+{% block title %}{{ servise.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
+{% block description %}{{ servise.meta_description }}{% endblock %}
+{% block keywords %}{{ servise.meta_keywords }}{% endblock %}
+{% block canonical %}{{ request.META.HTTP_HOST }}{{ servise.get_absolute_url }}{% endblock %}
+{% block og:title %}{{ servise.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
+{% block og:description %}{{ servise.meta_description }}{% endblock %}
+{% block og:url %}{{ request.META.HTTP_HOST }}{{ servise.get_absolute_url }}{% endblock %}
+{% block twitter:title %}{{ servise.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
+{% block twitter:description %}{{ servise.meta_description }}{% endblock %}
+{% block og:site_name %}{{ request.META.HTTP_HOST }}{{ servise.get_absolute_url }}{% endblock %}
 
 {% block body %}
 {% load static %}

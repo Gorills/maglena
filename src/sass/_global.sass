@@ -1,8 +1,11 @@
+html
+    scroll-behavior: smooth
 body
     margin: 0
     padding: 0
     font-family: 'Montserrat', sans-serif
     font-size: 14px
+    
 body._lock
     overflow: hidden
 
@@ -63,6 +66,11 @@ a
         font-weight: 500
         color: $mainColor
 
+.title-mini
+    text-align: center
+    margin-bottom: 40px
+    font-size: 22px
+
 
 .standart
     margin: 0 auto
@@ -80,6 +88,7 @@ a
     &__btn-wrap
         width: 100%
         text-align: center
+        margin-top: 20px
 
     &__p
         margin-bottom: 20px
@@ -98,3 +107,47 @@ a
 
 .grecaptcha-badge
     display: none
+
+.margintop
+    @media screen and ( max-width: 768px )
+        display: none
+        
+    &--active
+        margin-top: 223px
+        @media screen and ( max-width: 768px )
+            margin: 0
+
+.image-grid
+    width: 100%
+    margin: 0 auto
+    display: flex
+    flex-direction: column
+    // .image-grid__img
+
+    &__img
+        width: 100%
+    &__img + &__img
+        margin-top: 20px
+
+.work-grid
+    width: 100%
+    margin: 0 auto
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    // .work-grid__wrap
+
+    &__wrap
+        width: 100%
+        max-width: 380px
+        margin: 0 auto
+        height: fit-content
+        margin-top: 20px
+        
+    // .work-grid__img
+
+    &__img
+        width: 100%
+        height: auto
+        object-fit: cover
+

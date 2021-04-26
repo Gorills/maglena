@@ -47,8 +47,6 @@
     <link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/fav/apple-touch-icon-152x152.png' %}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/fav/apple-touch-icon-180x180.png' %}" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap"rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" integrity="sha512-WEQNv9d3+sqyHjrqUZobDhFARZDko2wpWdfcpv44lsypsSuMO0kHGd3MQ8rrsBn/Qa39VojphdU6CMkpJUmDVw==" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css?{% now "H:i:s" %}"/>
@@ -62,7 +60,7 @@
 
 
 
-
+    <div class="margintop"></div>
 
 
     <header class="header">
@@ -89,7 +87,7 @@
                             <i class="fas fa-phone"></i> 
                         </div>
                         <div class="header__contacts-wrap">
-                            {% for phone in setup.phone.all %}
+                            {% for phone in setup.adres.all %}
                             <a href="tel:{{ phone.phone }}" class="header__top-work">{{ phone.phone }} </a>
                             {% endfor %}
                         </div>
@@ -110,9 +108,9 @@
                             <i class="far fa-clock"></i>
                         </div>
                         <div class="header__contacts-wrap">
-                            
-                                <p class="header__top-adres"> {{ setup.time | safe }}</p>
-                           
+                            {% for time in setup.adres.all %}
+                                <p class="header__top-adres">{{ time.time }}</p>
+                            {% endfor %}
                         </div>
                     </div>
 
@@ -152,7 +150,14 @@
 
                                     {% for turn in request.turn_list %}
                                     <li class="header__dropdown-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
-                                        <a  class="header__dropdown-link" itemprop="url" href="{{ turn.get_absolute_url }}">{{ turn.title }}</a>
+                                        <a  class="header__dropdown-link" itemprop="url" href="{{ turn.get_absolute_url }}">
+                                            {% if turn.menu_name %}
+                                            {{ turn.menu_name }}
+                                            
+                                            {% else %}
+                                            {{ turn.title }}
+                                            {% endif %}
+                                        </a>
                                         <meta itemprop="name" content="{{ turn.title }}" />
                                  
                                     </li>
@@ -161,7 +166,7 @@
                                 </ul>
                             </li>
                             <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
-                                <a class='header__link' itemprop="url" href="#">Наши работы</a>
+                                <a class='header__link' itemprop="url" href="{% url 'work' %}">Наши работы</a>
                                 <meta itemprop="name" content="Наши работы" />
                             </li>
                             <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
@@ -170,6 +175,10 @@
                                     </li>
                             <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
                                 <a class='header__link' itemprop="url" href="{% url 'contacts' %}">Контакты</a>
+                                <meta itemprop="name" content="Контакты" />
+                            </li>
+                             <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                <a target="_blank" class='header__link' itemprop="url" href="https://xn--j1adfnc.xn----7sbhfedw0alh1ake5e.xn--p1ai/">Чемодан Сервис</a>
                                 <meta itemprop="name" content="Контакты" />
                             </li>
                             
@@ -215,13 +224,28 @@
                 can try delicious desserts highlighting coffee taste.</p>
                  <p>© Copyright 2012 - {% now "Y" %}</p>
             </div>
+
+            <div class="footer__column">
+                <p class="footer__title">Адреса </p>
+
+                {% for adres in setup.adres.all %}
+                <div class="footer__item">
+                    <i class="fas fa-map-marker-alt"></i><p class="footer__item-adres"> {{ adres.adress }}</p>
+                </div>
+                {% endfor %}
+                
+
+                
+
+            </div>
              <div class="footer__column">
                 <p class="footer__title">Время работы </p>
+                {% for adres in setup.adres.all %}
                 <div class="footer__clock-wrap">
                     
-                    <div class="footer__clock-clock">{{ setup.time | safe }}</div>
+                    <div class="footer__clock-clock">{{ adres.time | safe }}</div>
                 </div>
-            
+             {% endfor %}
             </div>
              <div class="footer__column">
                 <p class="footer__title">Контакты</p>
@@ -241,19 +265,7 @@
                     </div>
             
             </div>
-             <div class="footer__column">
-                <p class="footer__title">Адреса </p>
-
-                {% for adres in setup.adres.all %}
-                <div class="footer__item">
-                    <i class="fas fa-map-marker-alt"></i><p class="footer__item-adres"> {{ adres.adress }}</p>
-                </div>
-                {% endfor %}
-                
-
-                
-
-            </div>
+ 
         
         </div>
     </div>
@@ -272,8 +284,8 @@
 <div class="popup__closer"></div>
 
 
-     <script src="{% static 'js/jquery.js' %}?{% now 'H:i:s' %}"></script>
-     
+    <script src="{% static 'js/jquery.js' %}?{% now 'H:i:s' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="{% static 'js/script.js' %}?{% now 'H:i:s' %}"></script>
