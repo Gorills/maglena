@@ -141,9 +141,7 @@ $(document).ready(function() {
             title[Math.floor(Math.random()*classes.length)]);
     });
 
-    $('.standart img').each(function(i) {
-        $('.standart img').addClass('wow fadeInDownBig');
-    });
+ 
  
 })
 

@@ -100,11 +100,17 @@ a
     margin: 0 auto
     width: 100%
     padding: 80px 0
+    position: relative
+    overflow: hidden
+    
     // .standart__inner
 
     &__inner
-        margin: 0 auto
+        padding: 15px
         width: 100%
+        z-index: 22
+        position: relative
+        margin-right: 0
 
 
     // .standart__btn-wrap
@@ -116,6 +122,7 @@ a
 
     &__p
         margin-bottom: 20px
+        text-align: center
     // .standart__wrapper
 
     &__wrapper
@@ -124,6 +131,34 @@ a
         margin-bottom: 40px
     &__logo
         margin: 0 auto 
+    &__img
+        position: absolute
+        left: 0
+        top: 50%
+        transform: translateY( -50%)
+      
+        
+.w-65
+    width: 65%
+    margin: 0 0 auto auto
+    @media screen and ( max-width: 768px )
+        width: 100%
+        
+.end
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+
+.bg-purple
+    background-color: #7b7c91
+    color: #ffffff
+    &__op
+        background-color: #7b7c918a
+        @media screen and ( max-width: 768px )
+            margin-left: -15px
+            margin-right: -15px
+            
+            
 
 
 .bg-gray 
