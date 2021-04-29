@@ -15,30 +15,40 @@
 {% block body %}
 {% load static %}
 
-    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
-      <li itemprop="itemListElement" itemscope
-          itemtype="https://schema.org/ListItem">
-        <a itemprop="item" href="{% url 'index' %}">
-            <span itemprop="name">Главная</span></a>
-        <meta itemprop="position" content="1" />
-      </li>
-      <li itemprop="itemListElement" itemscope
-          itemtype="https://schema.org/ListItem">
-        <a itemprop="item" href="{% url 'about' %}">
-            <span itemprop="name">О нас</span></a>
-        <meta itemprop="position" content="2" />
-      </li>
-      
-      <li itemprop="itemListElement" itemscope
-          itemtype="https://schema.org/ListItem">
-        <span itemprop="name">Вакансии</span>
-        <meta itemprop="position" content="3" />
-      </li>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="breadcrumbs__inner">
+     
+        <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+
+          <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="name">Вакансии</span>
+            <meta itemprop="position" content="2" />
+          </li>
+
+
+        </ol>
+    </div>
+  </div>
+ 
+</div>
       
      
     </ol>
+<div class="standart">
+  <div class="container">
+    <div class="standart__inner">
+    {{ vac.text | safe }}
+    </div>
+  </div>
+</div>
 
-{{ vac.text | safe }}
 
 
 

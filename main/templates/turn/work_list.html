@@ -1,0 +1,87 @@
+
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+{% block description %}{% endblock %}
+{% block keywords %}{% endblock %}
+{% block canonical %}{% endblock %}
+{% block og:title %}{% endblock %}
+{% block og:description %}{% endblock %}
+{% block og:url %}{% endblock %}
+{% block twitter:title %}{% endblock %}
+{% block twitter:description %}{% endblock %}
+{% block og:site_name %}{% endblock %}
+
+{% block body %}
+{% load static %}
+
+  
+
+
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="breadcrumbs__inner">
+     
+        <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+
+        
+        
+          <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope
+              itemtype="https://schema.org/ListItem">
+            <span itemprop="name">Наши работы</span>
+            <meta itemprop="position" content="2" />
+          </li>
+
+        </ol>
+    </div>
+  </div>
+  
+</div>
+
+
+<div class="standart">
+  <div class="container">
+    <div class="standart__inner">
+    
+    <h2 class="title">Наши <span class="title__span">работы</span></h2>
+    
+      <div class="list-wrap">
+
+      {% for work in works %}
+        <a href="{{ work.get_absolute_url }}" class="list-wrap__item">
+          <img src="{{ work.parent.image.url }}" alt="" class="list-wrap__img">
+          <div class="list-wrap__text">
+            <h3 class="list-wrap__title">{{ work.parent.title }}</h3>
+            
+            <p class="list-wrap__btn">Смотреть работы</p>
+          </div>
+        </a>
+      {% endfor %}
+
+      </div>
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

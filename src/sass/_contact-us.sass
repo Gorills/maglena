@@ -1,0 +1,46 @@
+.contact-us
+    width: 100%
+    margin: 0 auto
+    
+    // .contact-us__inner
+
+    &__inner
+        display: flex
+        @media screen and ( max-width: 768px )
+            flex-direction: column
+            
+    // .contact-us__column
+
+    &__column
+        padding: 40px 0
+        width: 50%
+        text-align: center
+        @media screen and ( max-width: 768px )
+            width: 100%
+        &--bg
+            background-color: #333132
+            color: #fff
+    // .contact-us__wrap
+
+    &__wrap
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        img
+            width: 250px
+            margin-bottom: 40px
+
+    // .contact-us__text
+
+    &__text
+
+    &__text + &__text
+        margin-top: 20px
+    // .contact-us__link
+
+    &__link
+        margin-top: 20px
+        color: #fff
+
+

@@ -14,24 +14,64 @@
 
 {% block body %}
 {% load static %}
-
-<ol itemscope itemtype="https://schema.org/BreadcrumbList">
-      <li itemprop="itemListElement" itemscope
-          itemtype="https://schema.org/ListItem">
-        <a itemprop="item" href="{% url 'index' %}">
-            <span itemprop="name">Главная</span></a>
-        <meta itemprop="position" content="1" />
-      </li>
-      
-   <li itemprop="itemListElement" itemscope
-          itemtype="https://schema.org/ListItem">
-        <span itemprop="name">Контакты</span>
-        <meta itemprop="position" content="2" />
-      </li>
-      
+{% load contact_tags %}
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="breadcrumbs__inner">
      
-    </ol>
+        <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+
+          <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="name">Контакты</span>
+            <meta itemprop="position" content="2" />
+          </li>
+
+
+        </ol>
+    </div>
+  </div>
+ 
+</div>
 
 
 
+
+<div class="contact-us">
+  
+    <div class="contact-us__inner">
+      
+      <div class="contact-us__column contact-us__column--bg">
+        <div class="container">
+          <h1 class="title">Контакты</h1>
+            <div class="contact-us__wrap">
+            <img src="{{ setup.logo.url }}" alt="{{ setup.name }}">
+
+            {% for adres in setup.adres.all %}
+            <p class="contact-us__text">{{ adres.adress }}</p>
+            {% endfor %}
+            {% for phone in setup.phone.all %}
+            <a href="tel:{{ phone.phone }}" class="contact-us__link">{{ phone.phone }}</a>
+            {% endfor %}
+            </div>
+        </div>
+      </div>
+      <div class="contact-us__column">
+        <div class="container">
+          <h2 class="title">Обратная связь</h2>
+          <div class="contact-us__wrap">
+          {% contact_form %}
+          </div>
+        </div>
+      </div>
+    
+    </div>
+ 
+</div>
+{{ setup.map | safe }}
 {% endblock %}

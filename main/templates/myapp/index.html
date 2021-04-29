@@ -1,25 +1,120 @@
 
 {% extends 'base.html' %}
 
-{% block title %} {{ setup.meta_title }} {% endblock %}
-{% block description %} {{ setup.meta_description }} {% endblock %}
-{% block keywords %} {{ setup.meta_keywords}} {% endblock %}
-{% block canonical %} {{ setup.domen }} {% endblock %}
-{% block og:title %} {{ setup.meta_title }} {% endblock %}
-{% block og:description %} {{ setup.meta_description }} {% endblock %}
-{% block og:url %} {{ setup.domen }} {% endblock %}
-{% block twitter:title %} {{ setup.meta_title }}{% endblock %}
-{% block twitter:description %} {{ setup.meta_description }}{% endblock %}
-{% block og:site_name %} {{ setup.domen }}{% endblock %}
+{% block title %} {{ meta.meta_title }} {% endblock %}
+{% block description %} {{ meta.meta_description }} {% endblock %}
+{% block keywords %} {{ meta.meta_keywords}} {% endblock %}
+{% block canonical %} {{ meta.domen }} {% endblock %}
+{% block og:title %} {{ meta.meta_title }} {% endblock %}
+{% block og:description %} {{ meta.meta_description }} {% endblock %}
+{% block og:url %} {{ meta.domen }} {% endblock %}
+{% block twitter:title %} {{ meta.meta_title }}{% endblock %}
+{% block twitter:description %} {{ meta.meta_description }}{% endblock %}
+
 
 {% block body %}
 {% load static %}
+{% load thumbnail %}
+{% if slides.count > 1 %}
+<div class="slider">
+    {% for slide in slides %}
+    <div class="slider__slide">
+        <div class="container">
+            <div class="slider__inner">
+
+                <div class="slider__wrap wow bounceInLeft">
+                    <h2 class="slider__title">{{ slide.title }}</h2>
+                    <p class="slider__subtitle">{{ slide.description }}</p>
+
+                
+               
+                    <a href="{{ slide.parent.get_absolute_url }}" class="btn-primary">Подробнее</a>
+                   
+                </div>
+
+            </div>
+        </div>
+        {% thumbnail slide.image "1881x840" crop="center" as im %}
+              <img class="slider__img" alt="{{ slide.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+            
+        {% endthumbnail %}
+        
+    </div>
+
+    {% endfor %}
+    
+</div>
+{% endif %}
+
+<div class="standart bg-purple">
+  <div class="container">
+    <div class="standart__inner w-65 wow backInLeft bg-purple__op">
+    
+    <h1 class="title-mini">Творческая мастерская по ремонту вашей любимой одежды и обуви!</h1>
+    
+    <p class="standart__p">
+    Хотите быть уверены в качественной, профессиональной починке любых предметов гардероба? 
+    Тогда доверьте эту работу мастерам из салона-ателье «Maglena».
+    </p>
+    <p class="standart__p">
+    Это современная и оснащенная по последнему слову техники мастерская по ремонту одежды, мягкой мебели, 
+    покраске обуви и кожгалантереи, в которой работают квалифицированные специалисты. Им по силам выполнить
+    ремонт или реставрацию любого элемента гардероба или интерьера согласно требованиям заказчика. Также 
+    выполняем изготовление ключей и заточку инструментов, перетяжку автосалона, установку фурнитуры, 
+    качественно осуществим ремонт, реставрацию или обновление вашей любимой обуви.
+    </p>
+    <p class="standart__p">
+    Предлагаем эксклюзивную, достаточно редко встречающуюся, услугу по ремонту чемоданов. Мы имеем большую 
+    базу материалов и комплектующих для выполнения работ даже самого сложного уровня, готовы привнести 
+    “изюминку” вашей любимой вещи.
+    </p>  
+    <p class="standart__p">
+    Салон-ателье «Maglena» – гарантия индивидуального подхода и качественной работы, возможность 
+    подарить старой вещи новую жизнь!
+
+    </p>
+    </div>
+  </div>
+  <img src="{% static 'images/bg/ds.png' %}" alt="" class="standart__img wow backInLeft">
+</div>
 
 
 
-{% for slide in slides %}
-  <img src="{{ slide.image.url }}" alt="{{ slide.title }}">
-  <a href="{{ slide.parent.get_absolute_url }}">Подробнее</a>
-{% endfor %}
+
+
+<div class="standart ">
+  <div class="container">
+    <div class="standart__inner">
+    
+    <h2 class="title">Наши <span class="title__span">услуги</span></h2>
+    
+      <div class="list-wrap">
+
+      {% for turn in turns %}
+        <a href="{{ turn.get_absolute_url }}" class="list-wrap__item">
+        {% thumbnail turn.image "410x410" crop="center" as im %}
+              <img class="list-wrap__img" alt="{{ turn.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+               
+        {% endthumbnail %}
+         
+          <div class="list-wrap__text">
+            <h3 class="list-wrap__title">{{ turn.title }}</h3>
+            <p class="list-wrap__description">{{ turn.description }}</p>
+            <p class="list-wrap__btn">Подробнее</p>
+          </div>
+        </a>
+      {% endfor %}
+
+      </div>
+      <div class="standart__btn-wrap">
+        <a href="{% url 'turn' %}" class="btn-primary">Все услуги</a>
+      
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 
 {% endblock %}

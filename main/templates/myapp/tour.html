@@ -15,28 +15,29 @@
 {% block body %}
 {% load static %}
 
-    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
-      <li itemprop="itemListElement" itemscope
-          itemtype="https://schema.org/ListItem">
-        <a itemprop="item" href="{% url 'index' %}">
-            <span itemprop="name">Главная</span></a>
-        <meta itemprop="position" content="1" />
-      </li>
-      <li itemprop="itemListElement" itemscope
-          itemtype="https://schema.org/ListItem">
-        <a itemprop="item" href="{% url 'about' %}">
-            <span itemprop="name">О нас</span></a>
-        <meta itemprop="position" content="2" />
-      </li>
-      
-      <li itemprop="itemListElement" itemscope
-          itemtype="https://schema.org/ListItem">
-        <span itemprop="name">3-d тур</span>
-        <meta itemprop="position" content="3" />
-      </li>
-      
+ <div class="breadcrumbs">
+  <div class="container">
+    <div class="breadcrumbs__inner">
      
-    </ol>
+        <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+
+          <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="name">3D-тур</span>
+            <meta itemprop="position" content="2" />
+          </li>
+
+
+        </ol>
+    </div>
+  </div>
+ 
+</div>
 
 <iframe src="https://www.google.com/maps/embed?pb=!4v1528125803584!6m8!1m7!1sCAoSLEFGMVFpcFBBQVFDV1ZTS1U2ZkV1bXpEb3pKVm82Sm4weW9Da1NsZWZPVEE5!2m2!1d56.49430888653518!2d84.94857257266119!3f216.96696510628917!4f-14.749322384331293!5f0.7820865974627469" width="100%" height="700px" frameborder="0" style="border:0" allowfullscreen=""></iframe>
 

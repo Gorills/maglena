@@ -21,7 +21,7 @@ class RewiewForm(forms.ModelForm):
             })
         }
 
-class ContactForm(forms.Form):
+class ContactForm(forms.ModelForm):
     captcha = ReCaptchaField()
 
     class Meta: 
@@ -29,15 +29,21 @@ class ContactForm(forms.Form):
         fields = ['name', 'tel', 'messages', 'captcha']
         widgets = {
             'name': forms.TextInput(attrs={
-                'class': 'input',
+                'class': 'popup__input',
                 'placeholder': 'Имя'
             }),
-            'tel': forms.EmailInput(attrs={
-                'class': 'input',
+            'tel': forms.TextInput(attrs={
+                'class': 'popup__input',
                 'placeholder': '+7(999) 999 99-99'
             }),
-            'text': forms.Textarea(attrs={
-                'class': 'input',
-                'placeholder': 'Текст отзыва'
+            'messages': forms.Textarea(attrs={
+                'class': 'popup__input',
+                'placeholder': 'Сообщение'
             })
+        }
+        labels = {
+            'name': '',
+            'tel': '',
+            'messages': '',
+
         }

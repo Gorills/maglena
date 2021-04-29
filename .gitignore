@@ -16,3 +16,4 @@ tests/report/
 virt
 main/media
 main/db.sqlite3
+main/main/secret_key.py

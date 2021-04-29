@@ -21,11 +21,19 @@ class AdressAdmin(admin.TabularInline):
     extra = 0
     min_num = 1
 
-class ConfigAdmin(SingletonAdmin):
-    list_display = ('name', 'email', 'time', 'logo', 'map')
-    fields = ('name', 'email', 'time', 'logo', 'map')
-    save_on_top = True
+class ConfigForm(forms.ModelForm):
+    about = forms.CharField(label='О нас', widget=CKEditorUploadingWidget())
+    time = forms.CharField(label='Время работы', widget=CKEditorUploadingWidget())
+    class Meta:
+        model = Config
+        fields = '__all__'
 
+
+class ConfigAdmin(SingletonAdmin):
+    list_display = ('name', 'email', 'time', 'logo', 'map', 'about')
+    fields = ('name', 'email', 'time', 'logo', 'map', 'about')
+    save_on_top = True
+    form = ConfigForm
     inlines = [
         PhonesAdmin,
         AdressAdmin,
@@ -61,6 +69,8 @@ class WorkerAdmin(admin.ModelAdmin):
     list_display = ('name', 'position')
 
 admin.site.register(Worker, WorkerAdmin)
+
+
 
 class AwardsAdmin(admin.ModelAdmin):
     list_display = ('name', 'image')

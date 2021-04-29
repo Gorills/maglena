@@ -1,9 +1,18 @@
 from django.shortcuts import render, redirect
-from .models import Rewiew
-from .forms import RewiewForm
+from django.views.generic import CreateView
+from .models import Rewiew, Contact
+from .forms import RewiewForm, ContactForm
 
 
 # Create your views here.
+
+class ContactView(CreateView):
+    model = Contact
+    form_class = ContactForm
+    success_url = '/'
+
+
+
 
 def rewiew(request):
 
