@@ -9,6 +9,9 @@ body
 body._lock
     overflow: hidden
 
+*
+    animation-delay: .5s ease
+
 *,
 *:before,
 *:after
@@ -56,12 +59,33 @@ a
 
 
 .title
-    text-transform: uppercase
+    
     font-size: 32px
-    margin-bottom: 40px
+    margin: 0 auto 40px
     text-align: center
+    position: relative
+    display: block
+    font-weight: 400
+    &::before 
+        content: ""
+        position: absolute
+        bottom: -6px
+        left: 50%
+        margin-left: -25%
+        width: 50%
+        height: 2px
+        background: $mainColor
+        z-index: -1
     // .title__span
-
+    &::after
+        content: ""
+        position: absolute
+        bottom: -10px
+        left: 50%
+        margin-left: -15%
+        width: 30%
+        height: 2px
+        background: $mainColor
     &__span
         font-weight: 500
         color: $mainColor

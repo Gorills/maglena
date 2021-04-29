@@ -36,7 +36,6 @@
     <meta property="og:image" content="{% static 'images/social/vk.png' %}" />
     <meta property="og:image" content="{% static 'images/social/vk.png' %}" />
     <link rel="shortcut icon" href="{% static 'images/fav/favicon.ico' %}" type="image/x-icon" />
-    <link rel="icon" type="image/png" href="{% static 'images/fav/favicon-32x32.png' %}" sizes="32x32">
     <link rel="apple-touch-icon" href="{% static 'images/fav/apple-touch-icon.png' %}" />
     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'images/fav/apple-touch-icon-57x57.png' %}" />
     <link rel="apple-touch-icon" sizes="72x72" href="{% static 'images/fav/apple-touch-icon-72x72.png' %}" />
@@ -50,6 +49,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" integrity="sha512-WEQNv9d3+sqyHjrqUZobDhFARZDko2wpWdfcpv44lsypsSuMO0kHGd3MQ8rrsBn/Qa39VojphdU6CMkpJUmDVw==" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css?{% now "H:i:s" %}"/>
+    <link href="{% static 'libs/animate.css' %}?{% now " H:i:s" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'libs/animate.css'%}" />
     <link href="{% static 'css/style.css' %}?{% now " H:i:s" %}" rel="stylesheet">
     {% recaptcha_init %}
     {% recaptcha_ready action_name='homepage' %}
@@ -65,7 +66,7 @@
 
     <header class="header">
         <div class="container">
-            <div class="header__top">
+            <div class="header__top closer">
              <div class="header__logo">
                     
 
@@ -129,18 +130,18 @@
 
                         <ul class="header__list " itemprop="about" itemscope itemtype="http://schema.org/ItemList">
 
-                            <li class="header__item" itemprop="itemListElement" itemscope
+                            <li class="header__item closer" itemprop="itemListElement" itemscope
                                 itemtype="http://schema.org/ItemList">
                                 <a class='header__link' itemprop="url" href="{% url 'index' %}">Главная</a>
                                 <meta itemprop="name" content="Главная" />
                             </li>
-                            <li class="header__item " itemprop="itemListElement" itemscope
+                            <li class="header__item closer" itemprop="itemListElement" itemscope
                                 itemtype="http://schema.org/ItemList">
                                 <a class="header__link" itemprop="url" href="{% url 'about' %}">О нас</a>
                                 <meta itemprop="name" content="О нас" />
 
                             </li>
-                            <li class="header__item" itemprop="itemListElement" itemscope
+                            <li class="header__item " itemprop="itemListElement" itemscope
                                 itemtype="http://schema.org/ItemList">
                                 <a class='header__link header__link-drop' itemprop="url" href="{% url 'turn' %}">Услуги <i class="fas fa-chevron-down"></i></a>
                                 <meta itemprop="name" content="Услуги" />
@@ -165,19 +166,19 @@
 
                                 </ul>
                             </li>
-                            <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                            <li class="header__item closer" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
                                 <a class='header__link' itemprop="url" href="{% url 'work' %}">Наши работы</a>
                                 <meta itemprop="name" content="Наши работы" />
                             </li>
-                            <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                            <li class="header__item closer" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
                                         <a class="header__link" itemprop="url" href="{% url 'vacancy' %}">Вакансии</a>
                                         <meta itemprop="name" content="Вакансии" />
                                     </li>
-                            <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                            <li class="header__item closer" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
                                 <a class='header__link' itemprop="url" href="{% url 'contacts' %}">Контакты</a>
                                 <meta itemprop="name" content="Контакты" />
                             </li>
-                             <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                             <li class="header__item closer" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
                                 <a target="_blank" class='header__link' itemprop="url" href="https://xn--j1adfnc.xn----7sbhfedw0alh1ake5e.xn--p1ai/">Чемодан Сервис</a>
                                 <meta itemprop="name" content="Контакты" />
                             </li>
@@ -219,9 +220,7 @@
                 <div class="footer__logo-wrap">
                     <img src="{{ setup.logo.url }}" alt="{{ setup.name }}" class="footer__logo">
                 </div>
-                <p class="footer__text">Arabusta is a place for your perfect time over a cup of fragrant 
-                coffee. We offer over 100 sorts of coffee, freshly ground and made for you. Here you 
-                can try delicious desserts highlighting coffee taste.</p>
+                <p class="footer__text">Салон – ателье «Maglena» занимается высоконадежным ремонтом обуви и высококачественным ремонтом одежды.</p>
                  <p>© Copyright 2012 - {% now "Y" %}</p>
             </div>
 
@@ -249,7 +248,10 @@
             </div>
              <div class="footer__column">
                 <p class="footer__title">Контакты</p>
-                <p class="footer__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, quidem quisquam quo sint debitis atque?</p>
+                <p class="footer__text">
+                Связаться с нами можно по указанным телефонам, а так же написав на электронную почту или в любую из соц.сетей.
+                
+                </p>
                     {% for phone in setup.phone.all %}
                     <div class="footer__item">
                         <i class="fas fa-phone"></i> <a href="tel:{{ phone.phone }}" class="footer__link">{{ phone.phone }} </a>
@@ -285,9 +287,11 @@
 
 
     <script src="{% static 'js/jquery.js' %}?{% now 'H:i:s' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="{% static 'libs/wow.js'%}?{% now 'H:i:s' %}"></script>
+    <script>new WOW().init();</script>
     <script src="{% static 'js/script.js' %}?{% now 'H:i:s' %}"></script>
 
 </body>
