@@ -77,5 +77,32 @@
 </div>
 
 
+{% for video in servise.video.all%}
+
+<div class="video">
+  <div class="container">
+    <center>
+      <video src="{{ video.file.url }}" 
+      {% if video.autoplay > 0 %}
+      autoplay 
+      {% endif %}
+      {% if video.controls > 0 %}
+      controls 
+      {% endif %}
+      {% if video.mute %}
+      {% else %}
+      muted
+      {% endif %}
+      
+      
+      >
+      </video>
+    </center>
+  </div>
+</div>
+{% endfor %}
+
+
+
 
 {% endblock %}

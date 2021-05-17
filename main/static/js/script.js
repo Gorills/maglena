@@ -111,8 +111,13 @@ $(document).ready(function () {
   $('.list-wrap__item').each(function (i) {
     $(this).addClass(classes[Math.floor(Math.random() * classes.length)]);
   });
-  var title = ['wow bounceInLeft', 'wow backInDown', 'wow backInUp', 'wow fadeInDownBig', 'wow fadeInUpBig', 'wow'];
+  var title = ['wow bounceInLeft', 'wow backInDown', 'wow backInUp', 'wow fadeInDownBig', 'wow fadeInUpBig'];
   $('h1').each(function (i) {
     $('h1').addClass(title[Math.floor(Math.random() * classes.length)]);
   });
+  $('img').each(function (i) {
+    $('img').addClass('wow fadeIn');
+  });
+  $('.text-r').addClass('wow backInLeft');
+  $('.text-l').addClass('wow backInRight');
 });

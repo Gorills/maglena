@@ -25,6 +25,20 @@ class Turn(models.Model):
         verbose_name_plural = 'Услуги'
 
 
+class VideoTurn(models.Model):
+    title = models.CharField(max_length=250, verbose_name='Название')
+    file = models.FileField(upload_to='video')
+    parent = models.ForeignKey(Turn, on_delete=models.CASCADE, verbose_name='Услуга', related_name='video')
+    autoplay = models.BooleanField(verbose_name='Автопроигрывание', default=False, null=True)
+    mute = models.BooleanField(verbose_name='Звук', default=False, null=True)
+    controls = models.BooleanField(verbose_name='Управление видео', default=False, null=True)
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Видео'
+        verbose_name_plural = 'Видео'
+
 class Price(models.Model):
     title = models.CharField(max_length=150, verbose_name='Наименование')
     text = models.TextField(verbose_name='Прайс')
@@ -62,6 +76,20 @@ class Servise(models.Model):
         verbose_name = 'Доп.услуга'
         verbose_name_plural = 'Доп.услуги'
         
+
+class VideoServises(models.Model):
+    title = models.CharField(max_length=250, verbose_name='Название')
+    file = models.FileField(upload_to='video')
+    parent = models.ForeignKey(Servise, on_delete=models.CASCADE, verbose_name='Услуга', related_name='video')
+    autoplay = models.BooleanField(verbose_name='Автопроигрывание', default=False, null=True)
+    mute = models.BooleanField(verbose_name='Звук', default=False, null=True)
+    controls = models.BooleanField(verbose_name='Управление видео', default=False, null=True)
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Видео'
+        verbose_name_plural = 'Видео'
 
 class Work(models.Model):
     title = models.CharField(max_length=250, verbose_name='Название')
