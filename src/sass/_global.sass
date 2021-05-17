@@ -61,7 +61,7 @@ a
 .title
     
     font-size: 32px
-    margin: 0 auto 40px
+    margin: 0 auto 60px
     text-align: center
     position: relative
     display: block
@@ -96,6 +96,65 @@ a
     font-size: 22px
 
 
+.title-mini-1
+    text-transform: uppercase
+    padding: 10px 0 0
+    width: fit-content
+    background-color: #7b7c91
+    display: block
+    margin: 0 auto 50px
+    color: #000
+    position: relative
+    z-index: 2
+    &::before
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        content: ""
+        background-color: #7b7c91
+        z-index: -1
+    &::after
+        content: "01"
+        color: $mainColor
+        position: absolute
+        z-index: -2
+        font-weight: 700
+        font-size: 100px
+        bottom: -16px
+        left: -74px
+
+
+.title-mini-2
+    text-transform: uppercase
+    padding: 10px 0 0
+    width: fit-content
+    background-color: #7b7c91
+    display: block
+    margin: 0 auto 50px
+    color: #000
+    position: relative
+    z-index: 2
+    &::before
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        content: ""
+        background-color: #7b7c91
+        z-index: -1
+    &::after
+        content: "02"
+        color: $mainColor
+        position: absolute
+        z-index: -2
+        font-weight: 700
+        font-size: 100px
+        bottom: -16px
+        left: -68px
+
 .standart
     margin: 0 auto
     width: 100%
@@ -121,7 +180,7 @@ a
         margin-top: 20px
 
     &__p
-        margin-bottom: 20px
+        margin-bottom: 40px
         text-align: center
     // .standart__wrapper
 
@@ -133,14 +192,76 @@ a
         margin: 0 auto 
     &__img
         position: absolute
-        left: 0
+        left: 180px
         top: 50%
         transform: translateY( -50%)
-      
+        @media screen and ( max-width: 768px )
+            left: 50%
+            transform: translate(-50%, -50%)
+    &__img-right
+        position: absolute
+        right: 180px
+        top: 50%
+        transform: translateY( -50%)
+        @media screen and ( max-width: 768px )
+            left: 50%
+            transform: translate(-50%, -50%)
+    &__logo
+        width: 350px
+        display: block
+        margin: 0 auto
+        margin-bottom: 40px
+
+
+
+    // .standart__item
+
+    &__item
+        display: flex
+        width: 100%
+        max-width: 600px
+        margin: 0 auto
+        align-items: flex-end
+        text-align: center
+        @media screen and ( max-width: 480px )
+            padding: 0 15px
+            flex-direction: column
+            text-align: center
+        i
+            font-size: 50px
+            color: $mainColor
+            margin-right: 40px
+            @media screen and ( max-width: 480px )
+                
+                margin: 0 auto 20px
+
+    &__item + &__item 
+        margin-top: 40px
+    // .standart__item-title
+
+    &__item-title
+        text-align: center
+        margin-bottom: 20px
+        font-size: 18px
+        font-weight: 700
+
+    // .standart__item-text
+
+    &__item-text
+
+
+
         
 .w-65
     width: 65%
+    padding: 90px 0
     margin: 0 0 auto auto
+    @media screen and ( max-width: 768px )
+        width: 100%
+
+.w-65-2
+    width: 65%
+    
     @media screen and ( max-width: 768px )
         width: 100%
         
@@ -154,9 +275,7 @@ a
     color: #ffffff
     &__op
         background-color: #7b7c918a
-        @media screen and ( max-width: 768px )
-            margin-left: -15px
-            margin-right: -15px
+     
             
             
 
@@ -210,3 +329,8 @@ a
         height: auto
         object-fit: cover
 
+video
+    width: 100%
+
+.video
+    padding: 40px 0
