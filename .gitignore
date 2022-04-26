@@ -21,4 +21,4 @@ virt
 **/__pycache__
 **/migrations
 static/admin_volt
-
+static/tinymce
