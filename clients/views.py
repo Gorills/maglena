@@ -27,8 +27,8 @@ class ContactView(CreateView):
                 )
         return super(ContactView, self).form_valid(form)
 
-    def form_invalid(self, form):
-        return redirect(self.get_success_url())
+    
+        return redirect('/')
 
 
 
