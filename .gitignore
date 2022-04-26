@@ -22,3 +22,4 @@ virt
 **/migrations
 static/admin_volt
 static/tinymce
+static/django_tinymce
