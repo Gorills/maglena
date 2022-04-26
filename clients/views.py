@@ -23,7 +23,7 @@ class ContactView(CreateView):
                     message=message,
                     from_email='info@maglena.tomsk.ru',
                     recipient_list=['gorivanickiy@gmail.com', 'order-maglena@yandex.ru', 'salonmaglena@yandex.ru'],
-                    fail_silently=False,
+                    
                 )
         # return super(ContactView, self).form_valid(form)
         return redirect('/')
