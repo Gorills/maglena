@@ -43,11 +43,5 @@ def contacts_view(request):
             form.save()
             send_message(message)
 
-            send_mail(
-            'Заявка с сайта magena.tomsk.ru',
-            message,
-            'info@maglena.tomsk.ru',
-            ['gorivanickiy@gmail.com'],
-            fail_silently=False,
-            )
+            send_mail('Заявка с сайта magena.tomsk.ru',message,'info@maglena.tomsk.ru',['gorivanickiy@gmail.com'])
             return redirect('/')
