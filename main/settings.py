@@ -31,10 +31,9 @@ except ImportError:
     from .secret_key import SECRET_KEY
 
     
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+from .local_settings import DEBUG
 
-ALLOWED_HOSTS = []
+from .local_settings import ALLOWED_HOSTS
 
 
 # Application definition
@@ -96,12 +95,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+from . local_settings import DATABASES
 
 
 # Password validation
@@ -162,17 +156,20 @@ WEBMASTER_VERIFICATION = {
 }
 
 
-RECAPTCHA_PRIVATE_KEY = '6LfY0p4aAAAAAKqivjosRv9IgujOpq_Ex6lvOP8C'
-RECAPTCHA_PUBLIC_KEY = '6LfY0p4aAAAAAPItA8HRCQTba88lxHP-BW4gOv3_'
-RECAPTCHA_DEFAULT_ACTION = 'generic'
-RECAPTCHA_SCORE_THRESHOLD = 0.5
+from .local_settings import RECAPTCHA_PRIVATE_KEY
+from .local_settings import RECAPTCHA_PUBLIC_KEY
+from .local_settings import RECAPTCHA_DEFAULT_ACTION
+from .local_settings import RECAPTCHA_SCORE_THRESHOLD
+from .local_settings import RECAPTCHA_LANGUAGE
 
 
-EMAIL_HOST = 'smtp.fullspace.ru ' 
-EMAIL_HOST_USER = 'info@maglena70.ru' 
-EMAIL_HOST_PASSWORD = 'Ie51587v' 
-EMAIL_PORT = 465 
-EMAIL_USE_SSL = True
+from .local_settings import EMAIL_BACKEND
+from .local_settings import EMAIL_HOST
+from .local_settings import EMAIL_PORT
+from .local_settings import EMAIL_HOST_USER
+from .local_settings import EMAIL_HOST_PASSWORD
+from .local_settings import EMAIL_USE_TLS
+from .local_settings import EMAIL_USE_SSL
 
 TINYMCE_JS_URL = 'http://debug.example.org/tiny_mce/tiny_mce_src.js'
 TINYMCE_DEFAULT_CONFIG = {
