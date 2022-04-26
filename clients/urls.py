@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
    
-    path('', views.ContactView.as_view(), name='rewiew')
+    path('', views.contacts_view, name='rewiew')
 
    
 ]
