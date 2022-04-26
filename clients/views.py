@@ -19,12 +19,13 @@ class ContactView(CreateView):
         message = "Заявка с сайта maglena.tomsk.ru:" + "\n" + "*ИМЯ*: " +str(name) + "\n" + "*ТЕЛЕФОН*: " + str(tel) + "\n" + "*СООБЩЕНИЕ*: " +str(messages)
         send_message(message)
         send_mail(
-                    subject='Заявка с сайта magena.tomsk.ru',
-                    message=message,
-                    from_email='info@maglena.tomsk.ru',
-                    recipient_list=['gorivanickiy@gmail.com', 'order-maglena@yandex.ru', 'salonmaglena@yandex.ru'],
-                    
-                )
+            'Заявка с сайта magena.tomsk.ru',
+            message,
+            'info@maglena.tomsk.ru',
+            ['gorivanickiy@gmail.com', 'order-maglena@yandex.ru', 'salonmaglena@yandex.ru']
+            
+        )
+
         # return super(ContactView, self).form_valid(form)
         return redirect('/')
     
