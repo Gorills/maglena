@@ -40,8 +40,9 @@ def contacts_view(request):
         messages = request.POST['messages']
         message = "Заявка с сайта maglena.tomsk.ru:" + "\n" + "*ИМЯ*: " +str(name) + "\n" + "*ТЕЛЕФОН*: " + str(tel) + "\n" + "*СООБЩЕНИЕ*: " +str(messages)
         if form.is_valid():
-            form.save()
-            send_message(message)
 
             send_mail('Заявка с сайта magena.tomsk.ru',message,'info@maglena.tomsk.ru',['gorivanickiy@gmail.com'])
+            send_message(message)
+            form.save()
+
             return redirect('/')
