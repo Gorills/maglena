@@ -1,1 +1,16 @@
 @import "old";
+
+.image-grid {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    // .image-grid__img
+
+    &__img {
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 20px;
+    }
+}
