@@ -4,10 +4,10 @@
 {% block title %}{{ work.parent.title }} | Примеры работ{% endblock %}
 {% block description %}{{ work.meta_description }}{% endblock %}
 {% block keywords %}{{ work.meta_keywords }}{% endblock %}
-{% block canonical %}{{ request.META.HTTP_HOST }}{{ work.get_absolute_url }}{% endblock %}
+{% block canonical %}https://{{ request.get_host }}{{ work.get_absolute_url }}{% endblock %}
 {% block og:title %}{{ work.parent.title }} | Примеры работ{% endblock %}
 {% block og:description %}{{ work.meta_description }}{% endblock %}
-{% block og:url %}{{ request.META.HTTP_HOST }}{{ work.get_absolute_url }}{% endblock %}
+{% block og:url %}https://{{ request.get_host }}{{ work.get_absolute_url }}{% endblock %}
 {% block twitter:title %}{{ work.parent.title }} | Примеры работ{% endblock %}
 {% block twitter:description %}{{ work.meta_description }}{% endblock %}
 {% block og:site_name %}{{ request.META.HTTP_HOST }}{{ work.get_absolute_url }}{% endblock %}

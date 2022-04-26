@@ -1,16 +1,16 @@
 
 {% extends 'base.html' %}
 
-{% block title %} {% endblock %}
-{% block description %} {% endblock %}
+{% block title %} Контакты салона-ателье Маглена в Томске | {{ meta.meta_subtitle }}{% endblock %}
+{% block description %} Адреса, телефоны и время работы салона-ателье Маглена. Оставить заявку на сайте {% endblock %}
 {% block keywords %} {% endblock %}
-{% block canonical %} {% endblock %}
-{% block og:title %} {% endblock %}
-{% block og:description %}  {% endblock %}
-{% block og:url %} {% endblock %}
-{% block twitter:title %}{% endblock %}
-{% block twitter:description %} {% endblock %}
-{% block og:site_name %} {% endblock %}
+{% block canonical %}https://maglena.tomsk.ru/contacts/ {% endblock %}
+{% block og:title %} Контакты салона-ателье Маглена в Томске | {{ meta.meta_subtitle }} {% endblock %}
+{% block og:description %} Адреса, телефоны и время работы салона-ателье Маглена. Оставить заявку на сайте {% endblock %}
+{% block og:url %}https://maglena.tomsk.ru/contacts/ {% endblock %}
+{% block twitter:title %}Контакты салона-ателье Маглена в Томске | {{ meta.meta_subtitle }}{% endblock %}
+{% block twitter:description %} Адреса, телефоны и время работы салона-ателье Маглена. Оставить заявку на сайте {% endblock %}
+
 
 {% block body %}
 {% load static %}
@@ -50,14 +50,20 @@
         <div class="container">
           <h1 class="title">Контакты</h1>
             <div class="contact-us__wrap">
-            <img src="{{ setup.logo.url }}" alt="{{ setup.name }}">
+              <img src="{{ setup.logo.url }}" alt="{{ setup.name }}">
 
-            {% for adres in setup.adres.all %}
-            <p class="contact-us__text">{{ adres.adress }}</p>
-            {% endfor %}
-            {% for phone in setup.phone.all %}
-            <a href="tel:{{ phone.phone }}" class="contact-us__link">{{ phone.phone }}</a>
-            {% endfor %}
+              {% for adres in setup.adres.all %}
+              <p class="contact-us__text">{{ adres.adress }}</p>
+              {% endfor %}
+              {% for phone in setup.phone.all %}
+              <a href="tel:{{ phone.phone }}" class="contact-us__link">{{ phone.phone }}</a>
+              {% endfor %}
+              <a href="tel:89234017754" class="contact-us__link">8 (923) 401-77-54 - Чемодан сервис</a>
+              <a href="tel:https://api.whatsapp.com/send?phone=79528013671" class="contact-us__link">8 (952) 801-36-71 - Ремонт колясок</a>
+              <a href="tel:83822259439" class="contact-us__link">8 (3822) 25-94-39 - Ремонт колясок</a>
+
+
+                   
             </div>
         </div>
       </div>

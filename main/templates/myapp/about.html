@@ -1,19 +1,20 @@
 
 {% extends 'base.html' %}
 
-{% block title %} {% endblock %}
-{% block description %} {% endblock %}
+{% block title %} Информация о компании Маглена в Томске | {{ meta.meta_subtitle }}{% endblock %}
+{% block description %} История образования и развития организации, награды, сотрудники {% endblock %}
 {% block keywords %} {% endblock %}
-{% block canonical %} {% endblock %}
-{% block og:title %} {% endblock %}
-{% block og:description %}  {% endblock %}
-{% block og:url %} {% endblock %}
-{% block twitter:title %}{% endblock %}
-{% block twitter:description %} {% endblock %}
-{% block og:site_name %} {% endblock %}
+{% block canonical %}https://maglena.tomsk.ru/about/ {% endblock %}
+{% block og:title %} Информация о компании Маглена в Томске | {{ meta.meta_subtitle }}{% endblock %}
+{% block og:description %} История образования и развития организации, награды, сотрудники {% endblock %}
+{% block og:url %}https://maglena.tomsk.ru/about/ {% endblock %}
+{% block twitter:title %}Информация о компании Маглена в Томске | {{ meta.meta_subtitle }}{% endblock %}
+{% block twitter:description %}История образования и развития организации, награды, сотрудники {% endblock %}
+
 
 {% block body %}
 {% load static %}
+{% load thumbnail %}
 
 <div class="breadcrumbs">
   <div class="container">
@@ -55,19 +56,55 @@
 <div class="standart">
   <div class="container">
     <div class="standart__inner">
+
       
-      <h1 class="title">Наши мастера</h1>
+      
+      <h1 class="title">Наши сотрудники</h1>
       
       <div class="worker">
+
+      
       {% for worker in workers %}
+        {% if worker.izum < 1 %}
         <div class="worker__item">
           <div class="worker__img-wrap">
-            <img src="{{ worker.image.url }}" alt="" class="worker__img">
+          
+            {% thumbnail worker.image "200x200" crop="center" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="worker__img" alt="{{ worker.position }}">
+            {% endthumbnail %}
+        
+
+
           </div>
            <p class="worker__text">{{ worker.position }}</p>
         </div>
         
+        {% endif %}
+      {% endfor %}
 
+      </div>
+
+      <h2 class="title">Изумрудный город</h2>
+      
+      <div class="worker">
+
+      
+      {% for worker in workers %}
+        {% if worker.izum == 1 %}
+        <div class="worker__item">
+          <div class="worker__img-wrap">
+          
+            {% thumbnail worker.image "200x200" crop="center" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="worker__img" alt="{{ worker.position }}">
+            {% endthumbnail %}
+        
+
+
+          </div>
+           <p class="worker__text">{{ worker.position }}</p>
+        </div>
+        
+        {% endif %}
       {% endfor %}
 
       </div>

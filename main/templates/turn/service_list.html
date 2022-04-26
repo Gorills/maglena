@@ -2,15 +2,15 @@
 {% extends 'base.html' %}
 
 {% block title %}{{ servise.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
-{% block description %}{{ servise.meta_description }}{% endblock %}
+{% block description %}{{ servise.meta_description }} {% endblock %}
 {% block keywords %}{{ servise.meta_keywords }}{% endblock %}
-{% block canonical %}{{ request.META.HTTP_HOST }}{{ servise.get_absolute_url }}{% endblock %}
+{% block canonical %}https://{{ request.get_host }}{{ servise.get_absolute_url }}{% endblock %}
 {% block og:title %}{{ servise.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
 {% block og:description %}{{ servise.meta_description }}{% endblock %}
-{% block og:url %}{{ request.META.HTTP_HOST }}{{ servise.get_absolute_url }}{% endblock %}
+{% block og:url %}https://{{ request.get_host }}{{ servise.get_absolute_url }}{% endblock %}
 {% block twitter:title %}{{ servise.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
-{% block twitter:description %}{{ servise.meta_description }}{% endblock %}
-{% block og:site_name %}{{ request.META.HTTP_HOST }}{{ servise.get_absolute_url }}{% endblock %}
+{% block twitter:description %}{{ servise.meta_description }} {% endblock %}
+
 
 {% block body %}
 {% load static %}
@@ -68,13 +68,24 @@
 <div class="standart">
   <div class="container">
     <div class="standart__inner">
-      <h1 class="title">{{ servise.title }}</h1>
+      <h1 class="title">
+      {% if servise.h1 %}
+        {{ servise.h1 }}
+      {% else %}
+        {{ servise.title }}
+      {% endif %}
+      </h1>
       
       {{ servise.text | safe }}
-    
+
+      <center style="margin-top:40px;">
+      <a href="" class="btn-primary popup-btn">Оставить заявку</a>
+      </center>
+      
     </div>
   </div>
 </div>
+
 
 
 {% for video in servise.video.all%}
@@ -82,7 +93,11 @@
 <div class="video">
   <div class="container">
     <center>
-      <video src="{{ video.file.url }}" 
+      <video style="
+      width:100%;
+      max-width:640px;
+      " 
+      src="{{ video.file.url }}" 
       {% if video.autoplay > 0 %}
       autoplay 
       {% endif %}

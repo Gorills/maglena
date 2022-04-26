@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'tinymce',
-    'webmaster_verification',
+    # 'webmaster_verification',
     'snowpenguin.django.recaptcha3',
     'myapp',
     'turn',

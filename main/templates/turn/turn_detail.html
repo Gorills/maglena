@@ -4,13 +4,13 @@
 {% block title %}{{ turn.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
 {% block description %}{{ turn.meta_description }}{% endblock %}
 {% block keywords %}{{ turn.meta_keywords }}{% endblock %}
-{% block canonical %}{{ request.META.HTTP_HOST }}{{ turn.get_absolute_url }}{% endblock %}
+{% block canonical %}https://{{ request.get_host }}{{ turn.get_absolute_url }}{% endblock %}
 {% block og:title %}{{ turn.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
 {% block og:description %}{{ turn.meta_description }}{% endblock %}
-{% block og:url %}{{ turn.get_absolute_url }}{% endblock %}
+{% block og:url %}https://{{ request.get_host }}{{ turn.get_absolute_url }}{% endblock %}
 {% block twitter:title %}{{ turn.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
 {% block twitter:description %}{{ turn.meta_description }}{% endblock %}
-{% block og:site_name %}{{ request.META.HTTP_HOST }}{{ turn.get_absolute_url }}{% endblock %}
+
 
 {% block body %}
 {% load static %}
@@ -73,6 +73,18 @@
   </div>
 </div>
 
+<div class="feedback">
+  <div class="container">
+    <div class="feedback__inner">
+      <h2 class="feedback__text">{{ turn.description }}</h2>
+      <center>
+        <a href="" class="btn-primary popup-btn">Оставить заявку</a>
+      </center>
+    
+    </div>
+  </div>
+  <img src="{{ turn.image.url }}" alt="{{ turn.title }}" class="feedback__img">
+</div>
 
 {% for video in turn.video.all%}
 

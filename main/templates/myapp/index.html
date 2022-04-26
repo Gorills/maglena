@@ -15,6 +15,14 @@
 {% block body %}
 {% load static %}
 {% load thumbnail %}
+{% load random_numbers %}
+
+
+
+
+
+
+        
 {% if slides.count > 1 %}
 <div class="slider">
     {% for slide in slides %}
@@ -50,7 +58,7 @@
 
 <div class="standart bg-purple">
   <div class="container">
-    <div class="standart__inner w-65 bg-purple__op" >
+    <div class="standart__inner w-65 bg-purple__op wow bounceInRight" >
     
     <h2 class="title-mini title-mini-1">О нас</h2>
         <h1 class="title-mini">Творческая мастерская по ремонту вашей любимой одежды и обуви!</h1>
@@ -86,7 +94,7 @@
 
 <div class="standart bg-purple">
   <div class="container">
-    <div class="standart__inner w-65-2 bg-purple__op">
+    <div class="standart__inner w-65-2 bg-purple__op wow bounceInLeft">
     
     <h2 class="title-mini title-mini-2">Почему мы?</h2>
     <div class="standart__item">
@@ -121,7 +129,7 @@
   
     </div>
   </div>
-  <img src="{% static 'images/bg/bg-w.png' %}" alt="" class="standart__img-right" data-wow-duration="1s" data-wow-delay="1s">
+  <img src="{% static 'images/bg/bg-w.png' %}" alt="" class="standart__img-right" data-wow-duration="0.5s" data-wow-delay="0.5s">
 </div>
 
 
@@ -136,7 +144,7 @@
       <div class="list-wrap">
 
       {% for turn in turns %}
-        <a href="{{ turn.get_absolute_url }}" class="list-wrap__item">
+        <a href="{{ turn.get_absolute_url }}" class="list-wrap__item" data-wow-duration="0.{% random_int 50 99 %}s" data-wow-delay="{% random_int 0 2 %}s">
         {% thumbnail turn.image "410x410" crop="center" as im %}
               <img class="list-wrap__img" alt="{{ turn.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                
