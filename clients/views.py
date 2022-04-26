@@ -22,7 +22,8 @@ class ContactView(CreateView):
             'Заявка с сайта magena.tomsk.ru',
             message,
             'info@maglena.tomsk.ru',
-            ['gorivanickiy@gmail.com', 'order-maglena@yandex.ru', 'salonmaglena@yandex.ru']
+            ['gorivanickiy@gmail.com', 'order-maglena@yandex.ru', 'salonmaglena@yandex.ru'],
+            fail_silently=False,
             
         )
 
