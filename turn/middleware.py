@@ -7,7 +7,7 @@ from .models import Turn
 class GetTurn(MiddlewareMixin):
     def process_request(self, request):
 
-        turn_list= Turn.objects.all()
+        turn_list= Turn.objects.order_by('id')
        
         request.turn_list = turn_list
         

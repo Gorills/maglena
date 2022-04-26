@@ -30,15 +30,19 @@ class ContactForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': 'popup__input',
-                'placeholder': 'Имя'
+                'placeholder': 'Имя',
+                'pattern' : '[А-Яа-яЁё ]+',
             }),
             'tel': forms.TextInput(attrs={
                 'class': 'popup__input',
-                'placeholder': '+7(999) 999 99-99'
+                'placeholder': '+7(999) 999 99-99',
+                'type': 'tel',
+                'pattern' : '[0-9 ]+',
             }),
             'messages': forms.Textarea(attrs={
                 'class': 'popup__input',
-                'placeholder': 'Сообщение'
+                'placeholder': 'Сообщение',
+                'pattern' : '[А-Яа-яЁё ]+',
             })
         }
         labels = {
