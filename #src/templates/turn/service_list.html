@@ -1,0 +1,123 @@
+
+{% extends 'base.html' %}
+
+{% block title %}{{ servise.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
+{% block description %}{{ servise.meta_description }} {% endblock %}
+{% block keywords %}{{ servise.meta_keywords }}{% endblock %}
+{% block canonical %}https://{{ request.get_host }}{{ servise.get_absolute_url }}{% endblock %}
+{% block og:title %}{{ servise.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
+{% block og:description %}{{ servise.meta_description }}{% endblock %}
+{% block og:url %}https://{{ request.get_host }}{{ servise.get_absolute_url }}{% endblock %}
+{% block twitter:title %}{{ servise.meta_title }} | {{ meta.meta_subtitle }}{% endblock %}
+{% block twitter:description %}{{ servise.meta_description }} {% endblock %}
+
+
+{% block body %}
+{% load static %}
+
+
+   
+      
+    
+
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="breadcrumbs__inner">
+     
+        <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+              itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" itemscope itemtype="https://schema.org/WebPage"
+              itemprop="item" itemid="https://example.com/books/sciencefiction"
+              href="{% url 'turn' %}">
+              <span itemprop="name">Услуги</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+              itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" itemscope itemtype="https://schema.org/WebPage"
+              itemprop="item" itemid="https://example.com/books/sciencefiction"
+              href="{{ servise.parent.get_absolute_url }}">
+              <span itemprop="name">{{ servise.parent.title }}</span></a>
+            <meta itemprop="position" content="3" />
+          </li>
+          
+         
+          <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="name">{{ servise.title }}</span>
+            <meta itemprop="position" content="4" />
+          </li>
+
+        </ol>
+    </div>
+  </div>
+  
+</div>
+
+
+
+
+<div class="standart">
+  <div class="container">
+    <div class="standart__inner">
+      <h1 class="title">
+      {% if servise.h1 %}
+        {{ servise.h1 }}
+      {% else %}
+        {{ servise.title }}
+      {% endif %}
+      </h1>
+      
+      {{ servise.text | safe }}
+
+      <center style="margin-top:40px;">
+      <a href="" class="btn-primary popup-btn">Оставить заявку</a>
+      </center>
+      
+    </div>
+  </div>
+</div>
+
+
+
+{% for video in servise.video.all%}
+
+<div class="video">
+  <div class="container">
+    <center>
+      <video style="
+      width:100%;
+      max-width:640px;
+      " 
+      src="{{ video.file.url }}" 
+      {% if video.autoplay > 0 %}
+      autoplay 
+      {% endif %}
+      {% if video.controls > 0 %}
+      controls 
+      {% endif %}
+      {% if video.mute %}
+      {% else %}
+      muted
+      {% endif %}
+      
+      
+      >
+      </video>
+    </center>
+  </div>
+</div>
+{% endfor %}
+
+
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+{% block description %} {% endblock %}
+{% block keywords %} {% endblock %}
+{% block canonical %} {% endblock %}
+{% block og:title %} {% endblock %}
+{% block og:description %}  {% endblock %}
+{% block og:url %} {% endblock %}
+{% block twitter:title %}{% endblock %}
+{% block twitter:description %} {% endblock %}
+{% block og:site_name %} {% endblock %}
+
+{% block body %}
+{% load static %}
+
+ <div class="breadcrumbs">
+  <div class="container">
+    <div class="breadcrumbs__inner">
+     
+        <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+
+          <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="name">3D-тур</span>
+            <meta itemprop="position" content="2" />
+          </li>
+
+
+        </ol>
+    </div>
+  </div>
+ 
+</div>
+
+<h1 class="title">3D <span class="title__span">тур</span></h1>
+
+<iframe src="https://www.google.com/maps/embed?pb=!4v1528125803584!6m8!1m7!1sCAoSLEFGMVFpcFBBQVFDV1ZTS1U2ZkV1bXpEb3pKVm82Sm4weW9Da1NsZWZPVEE5!2m2!1d56.49430888653518!2d84.94857257266119!3f216.96696510628917!4f-14.749322384331293!5f0.7820865974627469" width="100%" height="700px" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+
+{% extends 'base.html' %}
+
+{% block title %} Примеры выполненных работ | Салон-ателье Маглена{% endblock %}
+{% block description %}Галерея работ, выполненных нашими мастерами в салоне-ателье Маглена{% endblock %}
+{% block keywords %}{% endblock %}
+{% block canonical %}https://maglena.tomsk.ru/work/{% endblock %}
+{% block og:title %}Примеры выполненных работ | Салон-ателье Маглена{% endblock %}
+{% block og:description %}Галерея работ, выполненных нашими мастерами в салоне-ателье Маглена{% endblock %}
+{% block og:url %}https://maglena.tomsk.ru/work/{% endblock %}
+{% block twitter:title %}Примеры выполненных работ | Салон-ателье Маглена{% endblock %}
+{% block twitter:description %}Галерея работ, выполненных нашими мастерами в салоне-ателье Маглена{% endblock %}
+{% block og:site_name %}{% endblock %}
+
+{% block body %}
+{% load static %}
+
+  
+
+
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="breadcrumbs__inner">
+     
+        <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+
+        
+        
+          <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope
+              itemtype="https://schema.org/ListItem">
+            <span itemprop="name">Наши работы</span>
+            <meta itemprop="position" content="2" />
+          </li>
+
+        </ol>
+    </div>
+  </div>
+  
+</div>
+
+
+<div class="standart">
+  <div class="container">
+    <div class="standart__inner">
+    
+    <h1 class="title">Наши <span class="title__span">работы</span></h1>
+    
+      <div class="list-wrap">
+
+      {% for work in works %}
+        <a href="{{ work.get_absolute_url }}" class="list-wrap__item">
+          <img src="{{ work.parent.image.url }}" alt="" class="list-wrap__img">
+          <div class="list-wrap__text">
+            <h3 class="list-wrap__title">{{ work.parent.title }}</h3>
+            
+            <p class="list-wrap__btn">Смотреть работы</p>
+          </div>
+        </a>
+      {% endfor %}
+
+      </div>
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

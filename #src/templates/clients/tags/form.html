@@ -1,0 +1,12 @@
+ <form action="{% url 'rewiew' %}" class="popup__form" method="post">
+        
+        {% csrf_token %}
+        {{ contact_form }}
+        
+        <button class="popup__btn">Отправить заявку</button>
+        <small class="popup__text">This site is protected by reCAPTCHA and the Google 
+            <a class="popup__link" href="https://policies.google.com/privacy">Privacy Policy</a> and
+            <a class="popup__link" href="https://policies.google.com/terms">Terms of Service</a> apply.
+        </small>
+       
+    </form>

@@ -1,0 +1,75 @@
+
+{% extends 'base.html' %}
+
+{% block title %} Наши услуги | {{ meta.meta_subtitle }}{% endblock %}
+{% block description %} Услуги салона-ателье Маглена в Томске. Пошив и ремонт одежды в Томске {% endblock %}
+{% block keywords %} {% endblock %}
+{% block canonical %}https://maglena.tomsk.ru/servises/ {% endblock %}
+{% block og:title %}Наши услуги | {{ meta.meta_subtitle }}{% endblock %}
+{% block og:description %} Услуги салона-ателье Маглена в Томске. Пошив и ремонт одежды в Томске  {% endblock %}
+{% block og:url %}https://maglena.tomsk.ru/servises/ {% endblock %}
+{% block twitter:title %}Наши услуги | {{ meta.meta_subtitle }}{% endblock %}
+{% block twitter:description %} Услуги салона-ателье Маглена в Томске. Пошив и ремонт одежды в Томске  {% endblock %}
+
+
+{% block body %}
+{% load static %}
+{% load random_numbers %}
+
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="breadcrumbs__inner">
+     
+        <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+
+          <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="name">Услуги</span>
+            <meta itemprop="position" content="2" />
+          </li>
+
+
+        </ol>
+    </div>
+  </div>
+ 
+</div>
+
+
+
+<div class="standart">
+  <div class="container">
+    <div class="standart__inner">
+    
+    <h1 class="title">Наши <span class="title__span">услуги</span></h1>
+    
+      <div class="list-wrap">
+
+      {% for turn in turns %}
+        <a href="{{ turn.get_absolute_url }}" class="list-wrap__item" data-wow-duration="0.{% random_int 1 99 %}s" data-wow-delay="{% random_int 0 2 %}s">
+          <img src="{{ turn.image.url }}" alt="" class="list-wrap__img">
+          <div class="list-wrap__text">
+            <h3 class="list-wrap__title">{% if turn.menu_name %}{{ turn.menu_name }}{% else %}{{ turn.title }}{% endif %}</h3>
+            <p class="list-wrap__description">{{ turn.description }}</p>
+            <p class="list-wrap__btn">Подробнее</p>
+          </div>
+        </a>
+      {% endfor %}
+
+      </div>
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}

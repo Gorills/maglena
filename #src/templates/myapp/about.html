@@ -1,0 +1,122 @@
+
+{% extends 'base.html' %}
+
+{% block title %} Информация о компании Маглена в Томске | {{ meta.meta_subtitle }}{% endblock %}
+{% block description %} История образования и развития организации, награды, сотрудники {% endblock %}
+{% block keywords %} {% endblock %}
+{% block canonical %}https://maglena.tomsk.ru/about/ {% endblock %}
+{% block og:title %} Информация о компании Маглена в Томске | {{ meta.meta_subtitle }}{% endblock %}
+{% block og:description %} История образования и развития организации, награды, сотрудники {% endblock %}
+{% block og:url %}https://maglena.tomsk.ru/about/ {% endblock %}
+{% block twitter:title %}Информация о компании Маглена в Томске | {{ meta.meta_subtitle }}{% endblock %}
+{% block twitter:description %}История образования и развития организации, награды, сотрудники {% endblock %}
+
+
+{% block body %}
+{% load static %}
+{% load thumbnail %}
+
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="breadcrumbs__inner">
+     
+        <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+            <span itemprop="name">Главная</span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+
+          <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="name">О нас</span>
+            <meta itemprop="position" content="2" />
+          </li>
+
+
+        </ol>
+    </div>
+  </div>
+ 
+</div>
+
+<div class="standart">
+  <div class="container">
+    <div class="standart__inner">
+      <div class="standart__wrapper">
+        <img src="{{ setup.logo.url }}" alt="" class="standart__logo">
+      
+      </div>
+      <h1 class="title">О нас</h1>
+      {{ setup.about | safe }}
+    </div>
+  </div>
+</div>
+
+<div class="standart">
+  <div class="container">
+    <div class="standart__inner">
+
+      
+      
+      <h1 class="title">Наши сотрудники</h1>
+      
+      <div class="worker">
+
+      
+      {% for worker in workers %}
+        {% if worker.izum < 1 %}
+        <div class="worker__item">
+          <div class="worker__img-wrap">
+          
+            {% thumbnail worker.image "200x200" crop="center" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="worker__img" alt="{{ worker.position }}">
+            {% endthumbnail %}
+        
+
+
+          </div>
+           <p class="worker__text">{{ worker.position }}</p>
+        </div>
+        
+        {% endif %}
+      {% endfor %}
+
+      </div>
+
+      <h2 class="title">Изумрудный город</h2>
+      
+      <div class="worker">
+
+      
+      {% for worker in workers %}
+        {% if worker.izum == 1 %}
+        <div class="worker__item">
+          <div class="worker__img-wrap">
+          
+            {% thumbnail worker.image "200x200" crop="center" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="worker__img" alt="{{ worker.position }}">
+            {% endthumbnail %}
+        
+
+
+          </div>
+           <p class="worker__text">{{ worker.position }}</p>
+        </div>
+        
+        {% endif %}
+      {% endfor %}
+
+      </div>
+
+      <div class="awards">
+      {% for award in awards %}
+        <img src="{{ award.image.url }}" alt="" class="awards__img">
+      
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
