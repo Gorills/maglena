@@ -54,10 +54,10 @@
       <div class="list-wrap">
 
       {% for work in works %}
-        <a href="{{ work.get_absolute_url }}" class="list-wrap__item">
-          <img src="{{ work.parent.image.url }}" alt="" class="list-wrap__img">
+        <a href="/work/{{ work.slug }}/" class="list-wrap__item">
+          <img src="{{ work.image.url }}" alt="{{ work.title }}" class="list-wrap__img">
           <div class="list-wrap__text">
-            <h3 class="list-wrap__title">{{ work.parent.title }}</h3>
+            <h3 class="list-wrap__title">{{ work.title }}</h3>
             
             <p class="list-wrap__btn">Смотреть работы</p>
           </div>

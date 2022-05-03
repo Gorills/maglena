@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Turn, Servise, Slider, Work
 from django.views.generic import ListView, DetailView
 
@@ -34,15 +34,22 @@ def servise_list(request, slug, parent):
 
     
 
-class WorkList(ListView):
-    model = Work
-    context_object_name = 'works'
+def work(request):
 
-    template_name = 'turn/work_list.html'
+    context = {
+
+        'works': Turn.objects.all()
+    }
+    
+    return render(request, 'turn/work_list.html', context)
 
 
-class WorkDetail(DetailView):
-    model = Work
-    context_object_name = 'work'
+def work_detail(request, slug):
 
-    template_name = 'turn/work_detail.html'
+    context = {
+
+        'work': get_object_or_404(Turn, slug=slug)
+    }
+
+    return render(request, 'turn/work_detail.html', context)
+    
