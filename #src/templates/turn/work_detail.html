@@ -56,12 +56,19 @@
 <div class="standart">
     <div class="container">
         <div class="standart__inner">
-            <h1 class="title">{{ work.parent.title }}. Примеры работ.</h1>
-            <div class="image-grid">
+            <h1 class="title">{{ work.title }}. Примеры работ.</h1>
+            <div class="work-grid">
                 {% for work in work.work.all %}
-                  {% for image in work.images.all %}
-                    <img src="{{ image.image.url }}" alt="{{ work.title }}" class="image-grid__img">
-                  {% endfor %}
+                  
+                    <div class="work-grid__item">
+                        <div class="work-grid__row">
+                          {% for image in work.images.all %}
+                            <img src="{{ image.image.url }}" alt="{{ work.title }}" class="work-grid__img">
+                          {% endfor %}
+                        </div>
+                        <p class="work-grid__title">{{ work.title }}</p>
+                    </div>
+                  
                 
                 {% endfor %}
             

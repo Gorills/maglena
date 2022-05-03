@@ -1,0 +1,33 @@
+.work-grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    // .work-grid__item
+
+    &__item {
+        width: 100%;
+        max-width: fit-content;
+    }
+
+    // .work-grid__wrap
+
+    &__row {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    // .work-grid__img
+
+    &__img {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    // .work-grid__title
+
+    &__title {
+        margin-top: 20px;
+        text-align: center;
+    }
+}
