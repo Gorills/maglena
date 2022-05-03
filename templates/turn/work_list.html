@@ -54,14 +54,16 @@
       <div class="list-wrap">
 
       {% for work in works %}
-        <a href="/work/{{ work.slug }}/" class="list-wrap__item">
-          <img src="{{ work.image.url }}" alt="{{ work.title }}" class="list-wrap__img">
-          <div class="list-wrap__text">
-            <h3 class="list-wrap__title">{{ work.title }}</h3>
-            
-            <p class="list-wrap__btn">Смотреть работы</p>
-          </div>
-        </a>
+        {% if work.work.count > 0 %}
+          <a href="/work/{{ work.slug }}/" class="list-wrap__item">
+            <img src="{{ work.image.url }}" alt="{{ work.title }}" class="list-wrap__img">
+            <div class="list-wrap__text">
+              <h3 class="list-wrap__title">{{ work.title }}</h3>
+              
+              <p class="list-wrap__btn">Смотреть работы</p>
+            </div>
+          </a>
+        {% endif %}
       {% endfor %}
 
       </div>
